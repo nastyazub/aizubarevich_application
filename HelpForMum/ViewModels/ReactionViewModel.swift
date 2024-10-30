@@ -29,6 +29,7 @@ import CoreData
     func addReaction(name: String) {
         let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
         let filter = NSPredicate(format: "name == %@", name)
+        request.predicate = filter
         
         
         do {
@@ -45,15 +46,45 @@ import CoreData
         }
     }
     
-//    func addReactionToTime(reaction: ReactionEntity, foodIntake: FoodIntakeEntity) {
-//        let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
-//        let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %d", foodIntake, reaction.id!)
-//        request.predicate = filter
-//        
-//        do {
-//            react
-//        }
-//    }
+    func addReactionToTime(reaction: ReactionEntity, foodIntake: FoodIntakeEntity) {
+        let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
+        let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %d", foodIntake, reaction.id!)
+        request.predicate = filter
+        
+        do {
+            reactions = try manager.context.fetch(request)
+            if reactions.isEmpty {
+                foodIntake.addToReactions(reaction)
+                save()
+            }
+        } catch let error {
+            print("Ошибка добавления реакции к приёму пищи")
+        }
+    }
+    
+    func deleteFromBase(reaction: ReactionEntity) {
+        manager.context.delete(reaction)
+        save()
+    }
+    
+    func deleteFromFoodIntake(at offsets: IndexSet, foodIntake: FoodIntakeEntity) {
+        let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
+        let filter = NSPredicate(format: "foodIntakes CONTAINS %@", foodIntake)
+        let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.predicate = filter
+        request.sortDescriptors = [nameSortDescriptor]
+        do {
+            reactions = try manager.context.fetch(request)
+        } catch let error {
+            print("Ошибка удаления продукта. \(error)")
+        }
+        for offset in offsets {
+            let reaction = reactions[offset]
+            foodIntake.removeFromReactions(reaction)
+            save()
+            print("product was deleted. \(String(describing: reaction.name))")
+        }
+    }
     
     func save() {
         reactions.removeAll()

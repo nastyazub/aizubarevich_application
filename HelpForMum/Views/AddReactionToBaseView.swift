@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct AddReactionView: View {
+struct AddReactionToBaseView: View {
+    
+    @Environment(ReactionViewModel.self) var vm
+    @Environment(\.dismiss) var dismiss
     
     @State var textFieldText: String = ""
     
@@ -23,23 +26,16 @@ struct AddReactionView: View {
                 
                 
                 Button("Готово") {
-                    //скоро будет
+                    if textFieldText.count > 1 {
+                        vm.addReaction(name: textFieldText)
+                        dismiss()
+                    }
                 }
                 .font(.title2)
                 .foregroundStyle(Color.white)
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-                Button("Добавить новую реакцию") {
-                    //скоро будет
-                }
-                .font(.title2)
-                .foregroundStyle(Color.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.green)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 
@@ -52,5 +48,6 @@ struct AddReactionView: View {
 }
 
 #Preview {
-    AddReactionView()
+    AddReactionToBaseView()
+        .environment(ReactionViewModel())
 }

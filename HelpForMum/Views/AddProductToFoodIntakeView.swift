@@ -40,7 +40,7 @@ struct AddProductToFoodIntakeView: View {
                 }
                 .listStyle(.plain)
             }
-            AddButton()
+            AddProductButton()
                 .navigationTitle(foodIntake.type_of_time?.name ?? "")
         }
     }
@@ -52,7 +52,7 @@ struct AddProductToFoodIntakeView: View {
         .environment(FoodIntakeViewModel())
 }
 
-struct AddButton: View {
+struct AddProductButton: View {
     var body: some View {
         NavigationLink {
             AddProductToBaseView()

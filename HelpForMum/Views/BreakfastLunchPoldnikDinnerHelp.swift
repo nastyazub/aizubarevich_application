@@ -68,7 +68,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
                 
                 Menu {
                     NavigationLink {
-                        
+                        AddReactionToFoodIntakeView(foodIntake: foodIntake)
                     } label: {
                         VStack {
                             Image(systemName: "plus")
@@ -127,10 +127,6 @@ struct SubViewForPreview: View {
     @Environment(FoodIntakeViewModel.self) var vm
     
     var body: some View {
-        if !vm.foodIntakes.isEmpty {
             BreakfastLunchPoldnikDinnerHelp(foodIntake: vm.foodIntakes[0])
-        } else {
-            Text("Hi")
-        }
     }
 }
