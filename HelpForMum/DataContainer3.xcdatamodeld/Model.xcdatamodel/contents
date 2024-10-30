@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="FoodIntakeEntity" representedClassName="FoodIntakeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="foodIntakes" inverseEntity="ProductEntity"/>
+        <relationship name="reactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReactionEntity" inverseName="foodIntakes" inverseEntity="ReactionEntity"/>
+        <relationship name="type_of_time" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeOfFoodEntity" inverseName="exact_time" inverseEntity="TimeOfFoodEntity"/>
+    </entity>
+    <entity name="MealEntity" representedClassName="MealEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="meal" inverseEntity="ProductEntity"/>
+    </entity>
+    <entity name="ProductEntity" representedClassName="ProductEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="foodIntakes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FoodIntakeEntity" inverseName="products" inverseEntity="FoodIntakeEntity"/>
+        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MealEntity" inverseName="products" inverseEntity="MealEntity"/>
+    </entity>
+    <entity name="ReactionEntity" representedClassName="ReactionEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="foodIntakes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FoodIntakeEntity" inverseName="reactions" inverseEntity="FoodIntakeEntity"/>
+    </entity>
+    <entity name="TimeOfFoodEntity" representedClassName="TimeOfFoodEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="exact_time" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FoodIntakeEntity" inverseName="type_of_time" inverseEntity="FoodIntakeEntity"/>
+    </entity>
+</model>
