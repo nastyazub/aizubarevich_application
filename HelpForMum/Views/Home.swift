@@ -17,7 +17,6 @@ struct Home: View {
     let myColor4 = #colorLiteral(red: 0.5808190107, green: 0.0884276256, blue: 0.3186392188, alpha: 1) //Maroon
     
     //Календарь
-    @State var selectedDate: String = Date().formatted(date: .numeric, time: .omitted)
     let calendar = Calendar.current
     
     @State var showCalendar: Bool = false
@@ -27,31 +26,41 @@ struct Home: View {
     @Environment(FoodIntakeViewModel.self) var vm
     
     @State var dateComponents = DateComponents()
-    @State var res = Date()
+    @State var selectedDate = Date()
+    
+    @State var showAlert: Bool = false
     
     
     var body: some View {
         NavigationStack {
                 ScrollView {
                     VStack {
-                        Text("\(res)")
+                        Text(selectedDate.formatted(date: .abbreviated, time: .omitted))
                         ForEach(vm.foodIntakes) { foodIntake in
-                            if foodIntake.date == res {
-                                BreakfastLunchPoldnikDinnerHelp(foodIntake: foodIntake)
+                            if foodIntake.date == selectedDate {
+                                BreakfastLunchPoldnikDinnerHelp(foodIntake: foodIntake, showAlert: $showAlert)
+                                    .alert("Удалить приём пищи '\((foodIntake.type_of_time?.name)!)'?", isPresented: $showAlert) {
+                                        Button("Нет", role: .cancel) { }
+                                        Button("Да", role: .destructive) {
+                                            vm.delete(foodIntake: foodIntake)
+                                        }
+                                    } message: {
+                                        Text("Удаление приёма пищи приведёт к удалению всех его данных.")
+                                    }
                             }
                         }
                         
                         NavigationLink {
-                            AddFoodIntakeView(date: res)
+                            AddFoodIntakeView(date: selectedDate)
                         } label: {
-                            Text("+ Создать")
+                            Text("+")
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.white)
-                                .padding(50)
+                                .padding(20)
                                 .frame(maxWidth: .infinity)
                                 .background(Color.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                                .clipShape(Circle())
                                 .padding()
                         }
                     }
@@ -66,8 +75,7 @@ struct Home: View {
                                 .font(.title2)
                         })
                         .popover(isPresented: $showCalendar, content: {
-                            DatePicker("", selection: $res, in: startingDate...endingDate, displayedComponents: .date)
-                                //.tint(Color.red)
+                            DatePicker("", selection: $selectedDate, in: startingDate...endingDate, displayedComponents: .date)
                                 .padding()
                                 .presentationCompactAdaptation(.popover)
                         })
@@ -75,9 +83,9 @@ struct Home: View {
             }
         }
         .onAppear {
-            let k = calendar.dateComponents([.day, .month, .year], from: res)
-            res = calendar.date(from: k)!
-            vm.searchFoodIntakeDate(date: res)
+            let simpleDate = calendar.dateComponents([.day, .month, .year], from: selectedDate)
+            selectedDate = calendar.date(from: simpleDate)!
+            vm.searchFoodIntakeDate(date: selectedDate)
             food = vm.foodIntakes
         }
     }
@@ -88,11 +96,5 @@ struct Home: View {
         .environment(FoodIntakeViewModel())
         .environment(TimeOfFoodViewModel())
         .environment(ProductViewModel())
-}
-
-func nn(date: String) -> Date {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd.MM.yyyy"
-    let res = formatter.date(from: date)
-    return res!
+        .environment(ReactionViewModel())
 }

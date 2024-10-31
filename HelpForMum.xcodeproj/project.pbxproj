@@ -31,10 +31,10 @@
 		4D4ABB442CC3F61100E576C6 /* FoodIntakeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB432CC3F61100E576C6 /* FoodIntakeViewModelTests.swift */; };
 		4D4ABB462CC3FD5700E576C6 /* ProductViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB452CC3FD5700E576C6 /* ProductViewModelTests.swift */; };
 		4D4ABB482CC4331900E576C6 /* AddProductToFoodIntakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB472CC4331900E576C6 /* AddProductToFoodIntakeView.swift */; };
-		4D4ABB4A2CCCCB3700E576C6 /* InitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB492CCCCB3700E576C6 /* InitButtonView.swift */; };
 		4D4ABB4C2CCCCF3F00E576C6 /* AddFoodIntakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB4B2CCCCF3F00E576C6 /* AddFoodIntakeView.swift */; };
 		4D4ABB502CD0ECBA00E576C6 /* ReactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */; };
 		4D4ABB522CD2855900E576C6 /* AddReactionToFoodIntakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */; };
+		4D4ABB542CD3CB8F00E576C6 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB532CD3CB8F00E576C6 /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,10 +82,10 @@
 		4D4ABB432CC3F61100E576C6 /* FoodIntakeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodIntakeViewModelTests.swift; sourceTree = "<group>"; };
 		4D4ABB452CC3FD5700E576C6 /* ProductViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModelTests.swift; sourceTree = "<group>"; };
 		4D4ABB472CC4331900E576C6 /* AddProductToFoodIntakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductToFoodIntakeView.swift; sourceTree = "<group>"; };
-		4D4ABB492CCCCB3700E576C6 /* InitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitButtonView.swift; sourceTree = "<group>"; };
 		4D4ABB4B2CCCCF3F00E576C6 /* AddFoodIntakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodIntakeView.swift; sourceTree = "<group>"; };
 		4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModel.swift; sourceTree = "<group>"; };
 		4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactionToFoodIntakeView.swift; sourceTree = "<group>"; };
+		4D4ABB532CD3CB8F00E576C6 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				4D4ABB222C6A3DF900E576C6 /* Home.swift */,
-				4D4ABB492CCCCB3700E576C6 /* InitButtonView.swift */,
 				4D4ABB392CA0539400E576C6 /* TabViewOfAll.swift */,
 				4D4ABB242C6A3EB300E576C6 /* BreakfastLunchPoldnikDinnerHelp.swift */,
 				4D4ABB282C7CA93000E576C6 /* AddMealView.swift */,
@@ -190,6 +189,7 @@
 				4D4ABB2C2C7CBEE100E576C6 /* AddReactionToBaseView.swift */,
 				4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */,
 				4D4ABB312C831C9400E576C6 /* ContentOfFoodIntakeView.swift */,
+				4D4ABB532CD3CB8F00E576C6 /* SwiftUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -346,7 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D4ABB342C83282600E576C6 /* CoraDataModel.swift in Sources */,
-				4D4ABB4A2CCCCB3700E576C6 /* InitButtonView.swift in Sources */,
+				4D4ABB542CD3CB8F00E576C6 /* SwiftUIView.swift in Sources */,
 				4D4ABB2D2C7CBEE100E576C6 /* AddReactionToBaseView.swift in Sources */,
 				4D4ABB502CD0ECBA00E576C6 /* ReactionViewModel.swift in Sources */,
 				4D4ABB3A2CA0539400E576C6 /* TabViewOfAll.swift in Sources */,

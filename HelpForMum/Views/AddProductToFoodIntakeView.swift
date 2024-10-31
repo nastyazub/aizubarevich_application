@@ -18,15 +18,18 @@ struct AddProductToFoodIntakeView: View {
     var body: some View {
         NavigationStack() {
             if vm.products.isEmpty {
-                Text("No products yet")
+                Spacer()
+                Text("Пока нет продуктов")
+                Spacer()
             }
             else {
-                    TextField("Напишите название продукта...", text: $textFieldText)
-                        .font(.title2)
-                        .padding()
-                        .background(Color.secondary.opacity(0.2))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .padding()
+                TextField("Напишите название продукта...", text: $textFieldText)
+                    .font(.title2)
+                    .padding()
+                    .background(Color.secondary.opacity(0.2))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding()
+                
                 List {
                     ForEach(vm.products) { product in
                         if product.name!.contains(textFieldText) || textFieldText == "" {
@@ -63,7 +66,7 @@ struct AddProductButton: View {
                 .foregroundStyle(Color.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.purple)
+                .background(Color.green)
                 .clipShape(RoundedRectangle(cornerRadius: 20.0))
                 .padding()
         }

@@ -17,14 +17,15 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
     
     let foodIntake: FoodIntakeEntity
     
-    @State var showAddMealView: Bool = false
+    @Binding var showAlert: Bool
     
     @Environment(FoodIntakeViewModel.self) var foodIntake_vm
     @Environment(TimeOfFoodViewModel.self) var time_vm
     
     let date: Date
     
-    init(foodIntake: FoodIntakeEntity) {
+    init(foodIntake: FoodIntakeEntity, showAlert: Binding<Bool>) {
+        self._showAlert = showAlert
         self.foodIntake = foodIntake
         self.title = (foodIntake.type_of_time?.name)!
         self.id = foodIntake.id!
@@ -103,9 +104,8 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
             .padding()
             .background(Color(backgroundColor).opacity(0.6).clipShape(RoundedRectangle(cornerRadius: 10)))
         .padding(8)
-            
             Button {
-                foodIntake_vm.delete(foodIntake: foodIntake)
+                showAlert.toggle()
             } label: {
                 Image(systemName: "trash")
                     .font(.subheadline)
@@ -125,8 +125,9 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
 
 struct SubViewForPreview: View {
     @Environment(FoodIntakeViewModel.self) var vm
+    @State var showAlert: Bool = false
     
     var body: some View {
-            BreakfastLunchPoldnikDinnerHelp(foodIntake: vm.foodIntakes[0])
+        BreakfastLunchPoldnikDinnerHelp(foodIntake: vm.foodIntakes[0], showAlert: $showAlert)
     }
 }

@@ -15,10 +15,14 @@ struct AddReactionToFoodIntakeView: View {
     
     let foodIntake: FoodIntakeEntity
     
+    @State var showAlert: Bool = false
+    
     var body: some View {
         NavigationStack {
             if vm.reactions.isEmpty {
-                Text("Реакций нет")
+                Spacer()
+                Text("Пока нет реакций")
+                Spacer()
             } else {
                 TextField("Напишите название реакции...", text: $textFieldText)
                     .font(.title2)
@@ -32,16 +36,31 @@ struct AddReactionToFoodIntakeView: View {
                         if reaction.name!.contains(textFieldText) || textFieldText == "" {
                             Text(reaction.name!)
                                 .onTapGesture {
-                                    vm.addReactionToTime(reaction: reaction, foodIntake: foodIntake)
-                                    dismiss()
+                                    prove(reaction: reaction)
                                 }
                         }
                     }
                 }
                 .listStyle(.plain)
+                .alert("Нельзя", isPresented: $showAlert) {
+                    Button("Ок", role: .cancel) { }
+                } message: {
+                    Text("Сначала нужно добавить продукты.")
+                }
             }
             AddReactionButton()
                 .navigationTitle(foodIntake.type_of_time?.name ?? "")
+        }
+    }
+    
+    func prove(reaction: ReactionEntity) {
+        if let products = foodIntake.products?.allObjects as? [ProductEntity] {
+            if products.isEmpty {
+                showAlert.toggle()
+            } else {
+                vm.addReactionToTime(reaction: reaction, foodIntake: foodIntake)
+                dismiss()
+            }
         }
     }
 }
