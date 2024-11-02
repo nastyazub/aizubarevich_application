@@ -58,7 +58,7 @@ import CoreData
                 save()
             }
         } catch let error {
-            print("Ошибка добавления реакции к приёму пищи")
+            print("Ошибка добавления реакции к приёму пищи. \(error)")
         }
     }
     
@@ -82,7 +82,7 @@ import CoreData
             let reaction = reactions[offset]
             foodIntake.removeFromReactions(reaction)
             save()
-            print("product was deleted. \(String(describing: reaction.name))")
+            print("Реакция удалена из приёма пищи. \(String(describing: reaction.name))")
         }
     }
     

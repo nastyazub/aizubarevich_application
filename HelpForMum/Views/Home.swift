@@ -85,8 +85,6 @@ struct Home: View {
         .onAppear {
             let simpleDate = calendar.dateComponents([.day, .month, .year], from: selectedDate)
             selectedDate = calendar.date(from: simpleDate)!
-            vm.searchFoodIntakeDate(date: selectedDate)
-            food = vm.foodIntakes
         }
     }
 }

@@ -34,7 +34,9 @@
 		4D4ABB4C2CCCCF3F00E576C6 /* AddFoodIntakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB4B2CCCCF3F00E576C6 /* AddFoodIntakeView.swift */; };
 		4D4ABB502CD0ECBA00E576C6 /* ReactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */; };
 		4D4ABB522CD2855900E576C6 /* AddReactionToFoodIntakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */; };
-		4D4ABB542CD3CB8F00E576C6 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB532CD3CB8F00E576C6 /* SwiftUIView.swift */; };
+		4DEB6F002CD411BE0076D658 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */; };
+		4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */; };
+		4DEB6F062CD65BD20076D658 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F052CD65BD20076D658 /* ListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +87,9 @@
 		4D4ABB4B2CCCCF3F00E576C6 /* AddFoodIntakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodIntakeView.swift; sourceTree = "<group>"; };
 		4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModel.swift; sourceTree = "<group>"; };
 		4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactionToFoodIntakeView.swift; sourceTree = "<group>"; };
-		4D4ABB532CD3CB8F00E576C6 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
+		4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsOfReactionsAndProductsViewModel.swift; sourceTree = "<group>"; };
+		4DEB6F052CD65BD20076D658 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				4D4ABB222C6A3DF900E576C6 /* Home.swift */,
+				4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */,
+				4DEB6F052CD65BD20076D658 /* ListView.swift */,
 				4D4ABB392CA0539400E576C6 /* TabViewOfAll.swift */,
 				4D4ABB242C6A3EB300E576C6 /* BreakfastLunchPoldnikDinnerHelp.swift */,
 				4D4ABB282C7CA93000E576C6 /* AddMealView.swift */,
@@ -189,7 +195,6 @@
 				4D4ABB2C2C7CBEE100E576C6 /* AddReactionToBaseView.swift */,
 				4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */,
 				4D4ABB312C831C9400E576C6 /* ContentOfFoodIntakeView.swift */,
-				4D4ABB532CD3CB8F00E576C6 /* SwiftUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				4D4ABB412CA9B88700E576C6 /* TimeOfFoodViewModel.swift */,
 				4D4ABB3B2CA05DA700E576C6 /* ProductViewModel.swift */,
 				4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */,
+				4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -346,14 +352,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D4ABB342C83282600E576C6 /* CoraDataModel.swift in Sources */,
-				4D4ABB542CD3CB8F00E576C6 /* SwiftUIView.swift in Sources */,
 				4D4ABB2D2C7CBEE100E576C6 /* AddReactionToBaseView.swift in Sources */,
 				4D4ABB502CD0ECBA00E576C6 /* ReactionViewModel.swift in Sources */,
 				4D4ABB3A2CA0539400E576C6 /* TabViewOfAll.swift in Sources */,
 				4D4ABB322C831C9400E576C6 /* ContentOfFoodIntakeView.swift in Sources */,
 				4D4ABB482CC4331900E576C6 /* AddProductToFoodIntakeView.swift in Sources */,
+				4DEB6F062CD65BD20076D658 /* ListView.swift in Sources */,
 				4D4ABB402CA0677500E576C6 /* FoodIntakeViewModel.swift in Sources */,
 				4D4ABB522CD2855900E576C6 /* AddReactionToFoodIntakeView.swift in Sources */,
+				4DEB6F002CD411BE0076D658 /* ReactionsView.swift in Sources */,
 				4D4ABB3E2CA05E2C00E576C6 /* Manager.swift in Sources */,
 				4D4ABB2B2C7CB4FC00E576C6 /* AddProductToBaseView.swift in Sources */,
 				4D4ABB292C7CA93000E576C6 /* AddMealView.swift in Sources */,
@@ -361,6 +368,7 @@
 				4D4ABB382C83793B00E576C6 /* AddMealView2.swift in Sources */,
 				4D4ABB422CA9B88700E576C6 /* TimeOfFoodViewModel.swift in Sources */,
 				4D4ABB3C2CA05DA700E576C6 /* ProductViewModel.swift in Sources */,
+				4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */,
 				4D4ABB232C6A3DF900E576C6 /* Home.swift in Sources */,
 				4D4ABAF82C63ECB600E576C6 /* ContentView.swift in Sources */,
 				4D4ABAF62C63ECB600E576C6 /* HelpForMumApp.swift in Sources */,

@@ -32,13 +32,13 @@ import CoreData
     
     // Добавление приёмов пищи (добавляются при загрузке на экран)
     func addFoodIntake(id: String, time: TimeOfFoodEntity, date: Date) {
-        //let request = NSFetchRequest<FoodIntakeEntity>(entityName: "FoodIntakeEntity")
-        //let filter = NSPredicate(format: "type_of_time == %@ AND date == %@", time, date as NSDate)
-        //request.predicate = filter
+        let request = NSFetchRequest<FoodIntakeEntity>(entityName: "FoodIntakeEntity")
+        let filter = NSPredicate(format: "id == %@", id)
+        request.predicate = filter
         
-        //do {
-            //let existing_FoodIntake = try manager.context.fetch(request)
-            //if existing_FoodIntake.isEmpty {
+        do {
+            let existing_FoodIntake = try manager.context.fetch(request)
+            if existing_FoodIntake.isEmpty {
                 let newFoodIntake = FoodIntakeEntity(context: manager.context)
                 newFoodIntake.id = id
                 newFoodIntake.date = date
@@ -46,11 +46,10 @@ import CoreData
                 foodIntakes.append(newFoodIntake)
                 print("Приём пищи добавлен")
                 save()
-            //}
-            
-//        } catch let error {
-//            print("Ошибка в чтении данных о приёме пищи. \(error)")
-//        }
+            }
+        } catch let error {
+            print("Ошибка в чтении данных о приёме пищи. \(error)")
+        }
     }
     
     // Поиск приёма пищи по id

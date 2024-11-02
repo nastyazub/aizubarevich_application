@@ -14,6 +14,11 @@ struct TabViewOfAll: View {
                 .tabItem {
                     Image(systemName: "house.fill")
                 }
+            
+            ListView()
+                .tabItem {
+                    Image(systemName: "menucard")
+                }
         }
     }
 }
@@ -23,4 +28,5 @@ struct TabViewOfAll: View {
         .environment(FoodIntakeViewModel())
         .environment(TimeOfFoodViewModel())
         .environment(ProductViewModel())
+        .environment(Analytics())
 }

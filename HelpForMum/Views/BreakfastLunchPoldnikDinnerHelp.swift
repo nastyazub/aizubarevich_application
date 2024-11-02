@@ -19,9 +19,6 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
     
     @Binding var showAlert: Bool
     
-    @Environment(FoodIntakeViewModel.self) var foodIntake_vm
-    @Environment(TimeOfFoodViewModel.self) var time_vm
-    
     let date: Date
     
     init(foodIntake: FoodIntakeEntity, showAlert: Binding<Bool>) {
@@ -120,7 +117,6 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
 #Preview {
     SubViewForPreview()
         .environment(FoodIntakeViewModel())
-        .environment(TimeOfFoodViewModel())
 }
 
 struct SubViewForPreview: View {

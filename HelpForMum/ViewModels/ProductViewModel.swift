@@ -105,7 +105,7 @@ import CoreData
             let product = products[offset]
             foodIntake.removeFromProducts(product)
             save()
-            print("product was deleted. \(String(describing: product.name))")
+            print("Продукт удалён из приёма пищи. \(String(describing: product.name))")
         }
     }
     
