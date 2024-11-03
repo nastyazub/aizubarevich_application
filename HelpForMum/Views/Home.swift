@@ -39,14 +39,6 @@ struct Home: View {
                         ForEach(vm.foodIntakes) { foodIntake in
                             if foodIntake.date == selectedDate {
                                 BreakfastLunchPoldnikDinnerHelp(foodIntake: foodIntake, showAlert: $showAlert)
-                                    .alert("Удалить приём пищи '\((foodIntake.type_of_time?.name)!)'?", isPresented: $showAlert) {
-                                        Button("Нет", role: .cancel) { }
-                                        Button("Да", role: .destructive) {
-                                            vm.delete(foodIntake: foodIntake)
-                                        }
-                                    } message: {
-                                        Text("Удаление приёма пищи приведёт к удалению всех его данных.")
-                                    }
                             }
                         }
                         

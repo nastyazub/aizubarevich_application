@@ -40,8 +40,10 @@ import CoreData
                 request.predicate = filter
                 do {
                     let foodIntakes = try manager.context.fetch(request)
-                    let countForProduct = foodIntakes.count
-                    dict.updateValue(countForProduct, forKey: product)
+                    if foodIntakes.count != 0 {
+                        let countForProduct = foodIntakes.count
+                        dict.updateValue(countForProduct, forKey: product)
+                    }
                 } catch let error {
                     print("Ошибка анализа данных. \(error)")
                 }

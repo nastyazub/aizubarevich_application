@@ -24,12 +24,17 @@ struct ReactionsView: View {
                             let countProduct = analytics.countForProduct(reaction: reaction)
                             let h = Double(countProduct.first!.value) / Double(countAll) * 100
                             let k = countProduct.first!.key
-                            RectangleView(reaction: reaction, percent: Int(h), product: k.name!)
+                            NavigationLink {
+                                EachReactionView(countProduct: countProduct, countAll: countAll, reaction: reaction)
+                            } label: {
+                                RectangleView(reaction: reaction, percent: Int(h), product: k.name!)
+                            }
+                            
                         }
                     }
                 }
-                .navigationTitle("Реакции")
             }
+            .navigationTitle("Реакции")
         }
         .onAppear {
             reactions = reaction_vm.reactions
@@ -54,6 +59,7 @@ struct RectangleView: View {
             Text(reaction.name!)
                 .font(.title2)
                 .fontWeight(.bold)
+                .foregroundStyle(Color.black)
                 .frame(maxWidth: .infinity, alignment: .topLeading)
                 .padding(.horizontal)
                 .padding(.top)
@@ -75,5 +81,35 @@ struct RectangleView: View {
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .shadow(radius: 10)
         .padding()
+    }
+}
+
+struct EachReactionView: View {
+    
+    let countProduct: [Dictionary<ProductEntity, Int>.Element]
+    let countAll: Int
+    let reaction: ReactionEntity
+    
+    let colums: [GridItem] = [
+        GridItem(.fixed(200)), GridItem(.fixed(200))
+    ]
+    
+    var table = [(String, Int)]()
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(countProduct, id: \.key) { el in
+                    HStack {
+                        let percent = Int(Double(el.value) / Double(countAll) * 100)
+                        Text(el.key.name!)
+                            .badge("\(percent)%")
+                    }
+                }
+            }
+            .listStyle(.plain)
+            .padding()
+            .navigationTitle(reaction.name!)
+        }
     }
 }

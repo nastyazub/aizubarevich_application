@@ -16,6 +16,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
     let time: TimeOfFoodEntity
     
     let foodIntake: FoodIntakeEntity
+    @Environment(FoodIntakeViewModel.self) var vm
     
     @Binding var showAlert: Bool
     
@@ -102,7 +103,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
             .background(Color(backgroundColor).opacity(0.6).clipShape(RoundedRectangle(cornerRadius: 10)))
         .padding(8)
             Button {
-                showAlert.toggle()
+                vm.delete(foodIntake: foodIntake)
             } label: {
                 Image(systemName: "trash")
                     .font(.subheadline)

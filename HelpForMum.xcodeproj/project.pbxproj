@@ -37,6 +37,8 @@
 		4DEB6F002CD411BE0076D658 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */; };
 		4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */; };
 		4DEB6F062CD65BD20076D658 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F052CD65BD20076D658 /* ListView.swift */; };
+		4DEB6F082CD6F2E30076D658 /* HeightAndWeightAddingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F072CD6F2E30076D658 /* HeightAndWeightAddingView.swift */; };
+		4DEB6F0A2CD6F3A70076D658 /* HeightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F092CD6F3A70076D658 /* HeightViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsOfReactionsAndProductsViewModel.swift; sourceTree = "<group>"; };
 		4DEB6F052CD65BD20076D658 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		4DEB6F072CD6F2E30076D658 /* HeightAndWeightAddingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightAndWeightAddingView.swift; sourceTree = "<group>"; };
+		4DEB6F092CD6F3A70076D658 /* HeightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,7 @@
 			children = (
 				4D4ABB222C6A3DF900E576C6 /* Home.swift */,
 				4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */,
+				4DEB6F072CD6F2E30076D658 /* HeightAndWeightAddingView.swift */,
 				4DEB6F052CD65BD20076D658 /* ListView.swift */,
 				4D4ABB392CA0539400E576C6 /* TabViewOfAll.swift */,
 				4D4ABB242C6A3EB300E576C6 /* BreakfastLunchPoldnikDinnerHelp.swift */,
@@ -208,6 +213,7 @@
 				4D4ABB3B2CA05DA700E576C6 /* ProductViewModel.swift */,
 				4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */,
 				4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */,
+				4DEB6F092CD6F3A70076D658 /* HeightViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DEB6F082CD6F2E30076D658 /* HeightAndWeightAddingView.swift in Sources */,
 				4D4ABB342C83282600E576C6 /* CoraDataModel.swift in Sources */,
 				4D4ABB2D2C7CBEE100E576C6 /* AddReactionToBaseView.swift in Sources */,
 				4D4ABB502CD0ECBA00E576C6 /* ReactionViewModel.swift in Sources */,
@@ -370,6 +377,7 @@
 				4D4ABB3C2CA05DA700E576C6 /* ProductViewModel.swift in Sources */,
 				4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */,
 				4D4ABB232C6A3DF900E576C6 /* Home.swift in Sources */,
+				4DEB6F0A2CD6F3A70076D658 /* HeightViewModel.swift in Sources */,
 				4D4ABAF82C63ECB600E576C6 /* ContentView.swift in Sources */,
 				4D4ABAF62C63ECB600E576C6 /* HelpForMumApp.swift in Sources */,
 				4D4ABB4C2CCCCF3F00E576C6 /* AddFoodIntakeView.swift in Sources */,

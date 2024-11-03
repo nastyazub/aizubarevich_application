@@ -7,6 +7,11 @@
         <relationship name="reactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReactionEntity" inverseName="foodIntakes" inverseEntity="ReactionEntity"/>
         <relationship name="type_of_time" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeOfFoodEntity" inverseName="exact_time" inverseEntity="TimeOfFoodEntity"/>
     </entity>
+    <entity name="HeightEntity" representedClassName="HeightEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="height" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="MealEntity" representedClassName="MealEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -27,5 +32,10 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="exact_time" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FoodIntakeEntity" inverseName="type_of_time" inverseEntity="FoodIntakeEntity"/>
+    </entity>
+    <entity name="WeightEntity" representedClassName="WeightEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>
