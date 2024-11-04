@@ -5,6 +5,17 @@
 //  Created by Настя on 29.10.2024.
 //
 
+// Класс взаимодействия с реакциями.
+// Функции:
+/*
+ 1. Выгрузка реакций из базы данных.
+ 2. Добавление реакции в базу данных.
+ 3. Добавление реакции в определённый приём пищи.
+ 4. Удаление реакции из базы данных.
+ 5. Удаление реакции из приёма пищи.
+ 6. Сохранение изменений реакций в базу данных.
+ */
+
 import Foundation
 import CoreData
 
@@ -12,10 +23,14 @@ import CoreData
     let manager = DataManager.instance
     var reactions: [ReactionEntity] = []
     
+    // Загрузка данных
     init() {
         getReactions()
     }
     
+    // MARK: ФУНКЦИИ
+    
+    ///  Загрузка продуктов из базы данных, добавление их в список продуктов.
     func getReactions() {
         let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
         
@@ -26,6 +41,8 @@ import CoreData
         }
     }
     
+    /// Добавление реакции в базу данных.
+    /// - Parameter name: Название реакции.
     func addReaction(name: String) {
         let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
         let filter = NSPredicate(format: "name == %@", name)
@@ -46,6 +63,10 @@ import CoreData
         }
     }
     
+    /// Добавление реакции в определённый приём пищи.
+    /// - Parameters:
+    ///   - reaction: Элемент базы данных (реакция), которую нужно добавить.
+    ///   - foodIntake: Элемент базы данных (приём пищи), куда нужно добавить реакцию.
     func addReactionToTime(reaction: ReactionEntity, foodIntake: FoodIntakeEntity) {
         let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
         let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %d", foodIntake, reaction.id!)
@@ -62,17 +83,25 @@ import CoreData
         }
     }
     
+    /// Удаление реакции из базы данных.
+    /// - Parameter reaction: Элемент базы данных (реакция), который нужно удалить.
     func deleteFromBase(reaction: ReactionEntity) {
         manager.context.delete(reaction)
         save()
     }
     
+    /// Удаление реакции из приёма пищи.
+    /// - Warning: offses - множество с одним значением, так для удаления продукта пользователю нужно свайпнуть.
+    /// - Parameters:
+    ///   - offsets: Множество целочисленных значений, равное положению с списке реакций, которые нужно удалить.
+    ///   - foodIntake: Элемент базы данных (приём пищи), откуда нужно удалить продукт.
     func deleteFromFoodIntake(at offsets: IndexSet, foodIntake: FoodIntakeEntity) {
         let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
         let filter = NSPredicate(format: "foodIntakes CONTAINS %@", foodIntake)
         let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         request.predicate = filter
         request.sortDescriptors = [nameSortDescriptor]
+        
         do {
             reactions = try manager.context.fetch(request)
         } catch let error {
@@ -86,9 +115,9 @@ import CoreData
         }
     }
     
+    /// Сохранение изменений реакций в базу данных.
     func save() {
         reactions.removeAll()
-        
         manager.save()
         self.getReactions()
     }

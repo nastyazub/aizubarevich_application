@@ -5,6 +5,15 @@
 //  Created by Настя on 22.09.2024.
 //
 
+// Класс взаимодействия с приёмами пищи.
+// Функции:
+/*
+ 1. Выгрузка приёмов пищи из базы данных.
+ 2. Добавление приёма пищи в базу данных.
+ 3. Удаление приёма пищи из базы данных.
+ 4. Сохранение изменений приёмов пищи в базу данных.
+ */
+
 import Foundation
 import CoreData
 
@@ -17,7 +26,9 @@ import CoreData
         getFoodIntakes()
     }
     
-    // Загрузка приёмов пищи, добавление их в список приёмов пищи
+    // MARK: ФУНКЦИИ
+    
+    /// Загрузка приёмов пищи из базы данных, добавление их в список приёмов пищи.
     func getFoodIntakes() {
         let request = NSFetchRequest<FoodIntakeEntity>(entityName: "FoodIntakeEntity")
         
@@ -27,10 +38,13 @@ import CoreData
         catch let error {
             print("Error fetching food intakes. \(error)")
         }
-        
     }
     
-    // Добавление приёмов пищи (добавляются при загрузке на экран)
+    /// Добавление приёма пищи в базу данных в базу данных.
+    /// - Parameters:
+    ///   - id: Строковое значение id добавляемого приёма пищи. Передаётся для проверки на дубликаты.
+    ///   - time: Тип времени приёма пищи (Завтрак, Обед, Перекус, Ужин).
+    ///   - date: Дата приёма пищи.
     func addFoodIntake(id: String, time: TimeOfFoodEntity, date: Date) {
         let request = NSFetchRequest<FoodIntakeEntity>(entityName: "FoodIntakeEntity")
         let filter = NSPredicate(format: "id == %@", id)
@@ -52,46 +66,21 @@ import CoreData
         }
     }
     
-    // Поиск приёма пищи по id
-    func searchFoodIntakeId(id: String) {
-        let request = NSFetchRequest<FoodIntakeEntity>(entityName: "FoodIntakeEntity")
-        let filter = NSPredicate(format: "id == %@", id)
-        request.predicate = filter
-        
-        do {
-            foodIntakes = try manager.context.fetch(request)
-            
-        } catch let error {
-            print("Ошибка поиска приёма пищи по ID. \(error)")
-        }
-    }
-    
-    func searchFoodIntakeDate(date: Date) {
-        let request = NSFetchRequest<FoodIntakeEntity>(entityName: "FoodIntakeEntity")
-        let filter = NSPredicate(format: "date == %@", date as NSDate)
-        request.predicate = filter
-        
-        do {
-            foodIntakes = try manager.context.fetch(request)
-        } catch let error {
-            print("Ошибка поиска приёма пищи по дате. \(error)")
-        }
-        
-    }
-    
-    //Сохранение изменений в базу данных
-    func save() {
-        foodIntakes.removeAll()
-        
-        self.manager.save()
-        self.getFoodIntakes()
-    }
-    
+    /// Удаление определённого приёма пищи.
+    /// - Parameter foodIntake: Элемент базы данных (приём пищи), который нужно удалить.
     func delete(foodIntake: FoodIntakeEntity) {
         manager.context.delete(foodIntake)
         save()
     }
     
+    /// Сохранение изменений приёмов пищи в базу данных.
+    func save() {
+        foodIntakes.removeAll()
+        self.manager.save()
+        self.getFoodIntakes()
+    }
+    
+    // MARK: УДАЛИТЬ
     func deleteAll() {
         for el in foodIntakes {
             manager.context.delete(el)

@@ -19,6 +19,10 @@ struct TabViewOfAll: View {
                 .tabItem {
                     Image(systemName: "menucard")
                 }
+            ContactWithDeveloperView()
+                .tabItem {
+                    Image(systemName: "mail.fill")
+                }
         }
     }
 }

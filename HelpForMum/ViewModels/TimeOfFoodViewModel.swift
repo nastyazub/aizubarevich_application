@@ -4,6 +4,13 @@
 //
 //  Created by Настя on 29.09.2024.
 //
+// Класс взаимодействия с типами приёмов пищи. 
+// Функции:
+/*
+ 1. Выгрузка типов приёмов пищи из базы данных.
+ 2. Добавление 4-х типов: Завтрак, Обед, Перекус, Ужин.
+ 3. Сохранение изменений типов приёмов пищи в базу данных.
+*/
 
 import Foundation
 import CoreData
@@ -12,10 +19,14 @@ import CoreData
     let manager = DataManager.instance
     var times: [TimeOfFoodEntity] = []
     
+    //Загрузка данных
     init() {
         getTimes()
     }
     
+    // MARK: ФУНКЦИИ
+    
+    /// Загрузка типов приёмов пищи из базы данных, добавление их в список типов приёмов пищи.
     func getTimes() {
         let request = NSFetchRequest<TimeOfFoodEntity>(entityName: "TimeOfFoodEntity")
         do {
@@ -25,6 +36,8 @@ import CoreData
         }
     }
     
+    /// Добавление типов приёмов пищи в базу данных.
+    /// - Warning: Выполняется только один раз при первом открытии приложения
     func addTimes() {
         let list = [
             "Завтрак", "Обед", "Перекус", "Ужин"
@@ -43,24 +56,14 @@ import CoreData
         }
     }
     
-    func getTimeForFoodIntake(title: String) {
-        let request = NSFetchRequest<TimeOfFoodEntity>(entityName: "TimeOfFoodEntity")
-        let filter = NSPredicate(format: "name == %@", title)
-        request.predicate = filter
-        
-        do {
-            times = try manager.context.fetch(request)
-        } catch let error {
-            print("Ошибка в присвоении типа приёму пищи. \(error)")
-        }
-    }
-    
+    /// Сохранение изменений типов приёмов пищи в базу данных.
     func save() {
         times.removeAll()
         self.manager.save()
         self.getTimes()
     }
     
+    // MARK: УДАЛИТЬ
     func deleteAll() {
         for el in times {
             manager.context.delete(el)
