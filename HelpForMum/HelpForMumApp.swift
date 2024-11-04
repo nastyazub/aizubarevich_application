@@ -17,6 +17,8 @@ struct HelpForMumApp: App {
                 .environment(TimeOfFoodViewModel())
                 .environment(ReactionViewModel())
                 .environment(Analytics())
+                .environment(HeightViewModel())
+                .environment(WeightViewModel())
         }
     }
 }

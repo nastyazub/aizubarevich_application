@@ -10,20 +10,18 @@ import SwiftUI
 struct BreakfastLunchPoldnikDinnerHelp: View {
     
     let title: String
-    let textColor: UIColor
+    let textColor: Color
     let backgroundColor: Color
     let id: String
     let time: TimeOfFoodEntity
     
     let foodIntake: FoodIntakeEntity
     @Environment(FoodIntakeViewModel.self) var vm
-    
-    @Binding var showAlert: Bool
+    @Environment(\.colorScheme) var colorScheme
     
     let date: Date
     
-    init(foodIntake: FoodIntakeEntity, showAlert: Binding<Bool>) {
-        self._showAlert = showAlert
+    init(foodIntake: FoodIntakeEntity) {
         self.foodIntake = foodIntake
         self.title = (foodIntake.type_of_time?.name)!
         self.id = foodIntake.id!
@@ -31,20 +29,20 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
         self.time = foodIntake.type_of_time!
         
         if title == "Завтрак" {
-            self.textColor = #colorLiteral(red: 0.5810584426, green: 0.1285524964, blue: 0.5745313764, alpha: 1) //Plum
-            self.backgroundColor = .purple
+            self.textColor = Color("BreakfastTextColor") //Plum
+            self.backgroundColor = Color("BreakfastBackgroundColor")
         }
         else if title == "Обед" {
-            self.textColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1) //Moss
-            self.backgroundColor = .green
+            self.textColor = Color("LunchTextColor")//Moss
+            self.backgroundColor = Color("LunchBackgroundColor")
         }
         else if title == "Перекус" {
-            self.textColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1) //Tangerine
-            self.backgroundColor = .yellow
+            self.textColor = Color("PoldnikTextColor") //Tangerine
+            self.backgroundColor = Color("PoldnikBackgroundColor")
         }
         else {
-            self.textColor = #colorLiteral(red: 0.5808190107, green: 0.0884276256, blue: 0.3186392188, alpha: 1) //Maroon
-            self.backgroundColor = .pink
+            self.textColor = Color("DinnerTextColor") //Maroon
+            self.backgroundColor = Color("DinnerBackgroundColor")
         }
     }
     
@@ -100,8 +98,13 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
                 }
             }
             .padding()
-            .background(Color(backgroundColor).opacity(0.6).clipShape(RoundedRectangle(cornerRadius: 10)))
-        .padding(8)
+            .background (
+                Color(backgroundColor)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            )
+            .shadow(color: .secondary,radius: colorScheme == .dark ? 10 : 0)
+            .padding(8)
+            
             Button {
                 vm.delete(foodIntake: foodIntake)
             } label: {
@@ -110,7 +113,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
                     .foregroundStyle(Color(textColor))
             }
             .padding(.trailing)
-
+            
         }
     }
 }
@@ -122,9 +125,8 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
 
 struct SubViewForPreview: View {
     @Environment(FoodIntakeViewModel.self) var vm
-    @State var showAlert: Bool = false
     
     var body: some View {
-        BreakfastLunchPoldnikDinnerHelp(foodIntake: vm.foodIntakes[0], showAlert: $showAlert)
+        BreakfastLunchPoldnikDinnerHelp(foodIntake: vm.foodIntakes[0])
     }
 }

@@ -16,6 +16,27 @@ struct ListView: View {
                 } label: {
                     Text("Реакции")
                 }
+                
+                NavigationLink {
+                    List {
+                        NavigationLink {
+                            
+                        } label: {
+                            Text("Добавить")
+                        }
+                        
+                        NavigationLink {
+                            //
+                        } label: {
+                            Text("Посмотреть графики")
+                        }
+
+
+                    }
+                } label: {
+                    Text("Рост и вес")
+                }
+
             }
         }
     }

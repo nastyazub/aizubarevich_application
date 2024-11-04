@@ -59,7 +59,7 @@ struct RectangleView: View {
             Text(reaction.name!)
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.primary)
                 .frame(maxWidth: .infinity, alignment: .topLeading)
                 .padding(.horizontal)
                 .padding(.top)
@@ -77,9 +77,9 @@ struct RectangleView: View {
         }
         .frame(height: 100)
         .frame(maxWidth: .infinity)
-        .background(Color.white)
+        .background(Color("BlackOrWhiteColor"))
         .clipShape(RoundedRectangle(cornerRadius: 10))
-        .shadow(radius: 10)
+        .shadow(color: .secondary, radius: 10)
         .padding()
     }
 }

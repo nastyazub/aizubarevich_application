@@ -29,4 +29,6 @@ struct TabViewOfAll: View {
         .environment(TimeOfFoodViewModel())
         .environment(ProductViewModel())
         .environment(Analytics())
+        .environment(HeightViewModel())
+        .environment(WeightViewModel())
 }
