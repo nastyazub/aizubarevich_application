@@ -35,6 +35,8 @@
 		4D4ABB502CD0ECBA00E576C6 /* ReactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */; };
 		4D4ABB522CD2855900E576C6 /* AddReactionToFoodIntakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */; };
 		4DCB70EC2CD978DA00FCAB88 /* ContactWithDeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB70EB2CD978DA00FCAB88 /* ContactWithDeveloperView.swift */; };
+		4DCB70EE2CD983CB00FCAB88 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB70ED2CD983CB00FCAB88 /* ChartView.swift */; };
+		4DCB70F22CDB656300FCAB88 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB70F12CDB656300FCAB88 /* MealViewModel.swift */; };
 		4DEB6F002CD411BE0076D658 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */; };
 		4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */; };
 		4DEB6F062CD65BD20076D658 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F052CD65BD20076D658 /* ListView.swift */; };
@@ -94,6 +96,8 @@
 		4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModel.swift; sourceTree = "<group>"; };
 		4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactionToFoodIntakeView.swift; sourceTree = "<group>"; };
 		4DCB70EB2CD978DA00FCAB88 /* ContactWithDeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactWithDeveloperView.swift; sourceTree = "<group>"; };
+		4DCB70ED2CD983CB00FCAB88 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		4DCB70F12CDB656300FCAB88 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsOfReactionsAndProductsViewModel.swift; sourceTree = "<group>"; };
 		4DEB6F052CD65BD20076D658 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				4D4ABB222C6A3DF900E576C6 /* Home.swift */,
+				4DCB70ED2CD983CB00FCAB88 /* ChartView.swift */,
 				4DCB70EB2CD978DA00FCAB88 /* ContactWithDeveloperView.swift */,
 				4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */,
 				4DEB6F0F2CD7D2190076D658 /* AddHeightView.swift */,
@@ -223,6 +228,7 @@
 				4D4ABB412CA9B88700E576C6 /* TimeOfFoodViewModel.swift */,
 				4D4ABB3B2CA05DA700E576C6 /* ProductViewModel.swift */,
 				4D4ABB4F2CD0ECBA00E576C6 /* ReactionViewModel.swift */,
+				4DCB70F12CDB656300FCAB88 /* MealViewModel.swift */,
 				4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */,
 				4DEB6F092CD6F3A70076D658 /* HeightViewModel.swift */,
 				4DEB6F172CD7DF3B0076D658 /* WeightViewModel.swift */,
@@ -369,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DCB70F22CDB656300FCAB88 /* MealViewModel.swift in Sources */,
 				4D4ABB342C83282600E576C6 /* CoraDataModel.swift in Sources */,
 				4D4ABB2D2C7CBEE100E576C6 /* AddReactionToBaseView.swift in Sources */,
 				4DEB6F182CD7DF3B0076D658 /* WeightViewModel.swift in Sources */,
@@ -392,6 +399,7 @@
 				4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */,
 				4D4ABB232C6A3DF900E576C6 /* Home.swift in Sources */,
 				4DEB6F122CD7DB6B0076D658 /* HeightAndWeightView.swift in Sources */,
+				4DCB70EE2CD983CB00FCAB88 /* ChartView.swift in Sources */,
 				4DEB6F0A2CD6F3A70076D658 /* HeightViewModel.swift in Sources */,
 				4D4ABAF82C63ECB600E576C6 /* ContentView.swift in Sources */,
 				4D4ABAF62C63ECB600E576C6 /* HelpForMumApp.swift in Sources */,

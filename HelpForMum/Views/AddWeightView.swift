@@ -52,7 +52,7 @@ struct AddWeightView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Добавление продукта")
+            .navigationTitle("Добавление веса")
         }
     }
 }

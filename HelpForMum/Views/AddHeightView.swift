@@ -49,7 +49,7 @@ struct AddHeightView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Добавление продукта")
+            .navigationTitle("Добавление роста")
         }
     }
 }

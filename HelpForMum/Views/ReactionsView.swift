@@ -90,10 +90,6 @@ struct EachReactionView: View {
     let countAll: Int
     let reaction: ReactionEntity
     
-    let colums: [GridItem] = [
-        GridItem(.fixed(200)), GridItem(.fixed(200))
-    ]
-    
     var table = [(String, Int)]()
     
     var body: some View {

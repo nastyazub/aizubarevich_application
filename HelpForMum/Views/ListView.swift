@@ -26,7 +26,7 @@ struct ListView: View {
                         }
                         
                         NavigationLink {
-                            //
+                            ChartView()
                         } label: {
                             Text("Посмотреть графики")
                         }
