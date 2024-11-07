@@ -58,17 +58,11 @@ struct AddReactionToFoodIntakeView: View {
             if products.isEmpty {
                 showAlert.toggle()
             } else {
-                vm.addReactionToTime(reaction: reaction, foodIntake: foodIntake)
+                vm.addReactionToFoodIntake(reaction: reaction, foodIntake: foodIntake)
                 dismiss()
             }
         }
     }
-}
-
-#Preview {
-    SubViewForPreview_addReactionToFoodIntake()
-        .environment(ReactionViewModel())
-        .environment(FoodIntakeViewModel())
 }
 
 struct AddReactionButton: View {
@@ -96,4 +90,10 @@ struct SubViewForPreview_addReactionToFoodIntake: View {
     var body: some View {
         AddReactionToFoodIntakeView(foodIntake: vm.foodIntakes[0])
     }
+}
+
+#Preview {
+    SubViewForPreview_addReactionToFoodIntake()
+        .environment(ReactionViewModel())
+        .environment(FoodIntakeViewModel())
 }

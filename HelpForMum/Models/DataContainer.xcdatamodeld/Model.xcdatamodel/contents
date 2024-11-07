@@ -15,13 +15,13 @@
     <entity name="MealEntity" representedClassName="MealEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="meal" inverseEntity="ProductEntity"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="meals" inverseEntity="ProductEntity"/>
     </entity>
     <entity name="ProductEntity" representedClassName="ProductEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="foodIntakes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FoodIntakeEntity" inverseName="products" inverseEntity="FoodIntakeEntity"/>
-        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MealEntity" inverseName="products" inverseEntity="MealEntity"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MealEntity" inverseName="products" inverseEntity="MealEntity"/>
     </entity>
     <entity name="ReactionEntity" representedClassName="ReactionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>

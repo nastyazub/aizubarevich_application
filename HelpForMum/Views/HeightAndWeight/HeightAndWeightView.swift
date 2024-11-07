@@ -11,8 +11,6 @@ struct HeightAndWeightView: View {
     @Environment(HeightViewModel.self) var height_vm
     @Environment(WeightViewModel.self) var weight_vm
     let selectedDate: Date
-    @State var flag: Bool = true
-    @State var listOfHeights = []
     
     var body: some View {
         VStack {

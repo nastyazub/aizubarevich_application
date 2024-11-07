@@ -20,6 +20,7 @@ struct AddProductToFoodIntakeView: View {
             if vm.products.isEmpty {
                 Spacer()
                 Text("Пока нет продуктов")
+                    .foregroundStyle(Color.secondary)
                 Spacer()
             }
             else {
@@ -32,10 +33,10 @@ struct AddProductToFoodIntakeView: View {
                 
                 List {
                     ForEach(vm.products) { product in
-                        if product.name!.contains(textFieldText) || textFieldText == "" {
+                        if product.name!.lowercased().contains(textFieldText.lowercased()) || textFieldText == "" {
                             Text(product.name!)
                                 .onTapGesture {
-                                    vm.addProductToTime(product: product, foodIntake: foodIntake)
+                                    vm.addProductToFoodIntake(product: product, foodIntake: foodIntake)
                                     dismiss()
                                 }
                         }
@@ -47,12 +48,6 @@ struct AddProductToFoodIntakeView: View {
                 .navigationTitle(foodIntake.type_of_time?.name ?? "")
         }
     }
-}
-
-#Preview {
-    SubViewForPreview_addProductToFoodIntake()
-        .environment(ProductViewModel())
-        .environment(FoodIntakeViewModel())
 }
 
 struct AddProductButton: View {
@@ -78,4 +73,10 @@ struct SubViewForPreview_addProductToFoodIntake: View {
     var body: some View {
         AddProductToFoodIntakeView(foodIntake: vm.foodIntakes[0])
     }
+}
+
+#Preview {
+    SubViewForPreview_addProductToFoodIntake()
+        .environment(ProductViewModel())
+        .environment(FoodIntakeViewModel())
 }

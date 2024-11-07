@@ -9,18 +9,22 @@ import SwiftUI
 
 struct ContactWithDeveloperView: View {
     var body: some View {
-        Button {
-            openMail(emailTo: "nastya.zubarevich@gmail.com")
-        } label: {
-            Text("Связаться с разработчиком через почту.")
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundStyle(Color.white)
-                .padding(20)
-                .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
+        VStack {
+            Spacer()
+            
+            Button {
+                openMail(emailTo: "nastya.zubarevich@gmail.com")
+            } label: {
+                Text("Связаться с разработчиком через почту.")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color.white)
+                    .padding(20)
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+            .padding()
         }
-
     }
     
     func openMail(emailTo:String) {

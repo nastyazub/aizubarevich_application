@@ -17,7 +17,7 @@ struct ContentOfFoodIntakeView: View {
             if let products = foodIntake.products?.allObjects as? [ProductEntity] {
                 if products.isEmpty {
                     Text("Продуктов и реакций нет")
-                        .foregroundStyle(Color.gray)
+                        .foregroundStyle(Color.secondary)
                 } else {
                     HStack {
                         ProductsInFoodIntakeView(products: products, foodIntake: foodIntake)
@@ -27,20 +27,6 @@ struct ContentOfFoodIntakeView: View {
                 }
             }
         }
-    }
-}
-
-#Preview {
-    SubViewForPreview_ContentOfFoodIntake()
-        .environment(FoodIntakeViewModel())
-        .environment(ProductViewModel())
-        .environment(ReactionViewModel())
-}
-
-struct SubViewForPreview_ContentOfFoodIntake: View {
-    @Environment(FoodIntakeViewModel.self) var foodIntake_vm
-    var body: some View {
-        ContentOfFoodIntakeView(foodIntake: foodIntake_vm.foodIntakes[0])
     }
 }
 
@@ -67,12 +53,15 @@ struct ProductsInFoodIntakeView: View {
                 }
                 
                 Section {
-                    ForEach(foodIntake.reactions?.allObjects as! [ReactionEntity]) { reaction in
-                        Text(reaction.name!)
+                    if let reactions = foodIntake.reactions?.allObjects as? [ReactionEntity] {
+                        let reactions = reactions.sorted() {$0.name! < $1.name!}
+                        ForEach(reactions) { reaction in
+                            Text(reaction.name!)
+                        }
+                        .onDelete(perform: { indexSet in
+                            reaction_vm.deleteFromFoodIntake(at: indexSet, foodIntake: foodIntake)
+                        })
                     }
-                    .onDelete(perform: { indexSet in
-                        reaction_vm.deleteFromFoodIntake(at: indexSet, foodIntake: foodIntake)
-                    })
                 } header: {
                     Text("Реакции")
                 }
@@ -80,4 +69,18 @@ struct ProductsInFoodIntakeView: View {
             .listStyle(.inset)
         }
     }
+}
+
+struct SubViewForPreview_ContentOfFoodIntake: View {
+    @Environment(FoodIntakeViewModel.self) var foodIntake_vm
+    var body: some View {
+        ContentOfFoodIntakeView(foodIntake: foodIntake_vm.foodIntakes[0])
+    }
+}
+
+#Preview {
+    SubViewForPreview_ContentOfFoodIntake()
+        .environment(FoodIntakeViewModel())
+        .environment(ProductViewModel())
+        .environment(ReactionViewModel())
 }

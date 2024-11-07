@@ -67,7 +67,7 @@ import CoreData
     /// - Parameters:
     ///   - reaction: Элемент базы данных (реакция), которую нужно добавить.
     ///   - foodIntake: Элемент базы данных (приём пищи), куда нужно добавить реакцию.
-    func addReactionToTime(reaction: ReactionEntity, foodIntake: FoodIntakeEntity) {
+    func addReactionToFoodIntake(reaction: ReactionEntity, foodIntake: FoodIntakeEntity) {
         let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
         let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %d", foodIntake, reaction.id!)
         request.predicate = filter

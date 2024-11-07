@@ -43,7 +43,7 @@ import CoreData
     
     ///  Добаление продукта в базу данных.
     /// - Parameter name: Название продукта.
-    func addProduct(name: String) {
+    func addProduct(name: String) -> [ProductEntity] {
         let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
         let filter = NSPredicate(format: "name = %@", name)
         request.predicate = filter
@@ -57,25 +57,45 @@ import CoreData
                 products.append(newProduct)
                 save()
                 print("Продукт добавлен")
+                return [newProduct]
             }
         } catch let error {
             print("Ошибка добавления продукта в базу. \(error)")
         }
+        return products
     }
     
     /// Добавление продукта в определённый приём пищи.
     /// - Parameters:
     ///   - product: Элемент базы данных (продукт), который  нужно добавить.
     ///   - foodIntake: Элемент базы данных (приём пищи), куда нужно добавить продукт.
-    func addProductToTime(product: ProductEntity, foodIntake: FoodIntakeEntity) { // ДОДЕЛАТЬ!!!!
+    func addProductToFoodIntake(product: ProductEntity, foodIntake: FoodIntakeEntity) { // ДОДЕЛАТЬ!!!!
         let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
-        let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %d", foodIntake, product.id!)
+        let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %@", foodIntake, product.id!)
         request.predicate = filter
         
         do {
             products = try manager.context.fetch(request)
             if products.isEmpty {
                 foodIntake.addToProducts(product)
+                save()
+            }
+        } catch let error {
+            print("Ошибка в добавлении продукта к приёму пищи. \(error)")
+        }
+    }
+    
+    // MARK: COMMENT
+    
+    func addProductToMeal(product: ProductEntity, meal: MealEntity) {
+        let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
+        let filter = NSPredicate(format: "meals CONTAINS %@ AND id == %d", meal, product.id!)
+        request.predicate = filter
+        
+        do {
+            products = try manager.context.fetch(request)
+            if products.isEmpty {
+                meal.addToProducts(product)
                 save()
             }
         } catch let error {
@@ -105,13 +125,33 @@ import CoreData
         do {
             products = try manager.context.fetch(request)
         } catch let error {
-            print("Ошибка удаления продукта. \(error)")
+            print("Ошибка удаления продукта из приёма пищи. \(error)")
         }
         for offset in offsets {
             let product = products[offset]
             foodIntake.removeFromProducts(product)
             save()
             print("Продукт удалён из приёма пищи. \(String(describing: product.name))")
+        }
+    }
+    
+    func deleteFromMeal(at offsets: IndexSet, meal: MealEntity) {
+        let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
+        let filter = NSPredicate(format: "meals CONTAINS %@", meal)
+        let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.predicate = filter
+        request.sortDescriptors = [nameSortDescriptor]
+        
+        do {
+            products = try manager.context.fetch(request)
+        } catch let error {
+            print("Ошибка удаления продукта из блюда. \(error)")
+        }
+        for offset in offsets {
+            let product = products[offset]
+            meal.removeFromProducts(product)
+            save()
+            print("Продукт удалён из блюда. \(String(describing: product.name))")
         }
     }
     

@@ -16,37 +16,38 @@ struct ReactionsView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack {
-                    ForEach(reactions) { reaction in
-                        let countAll = analytics.countAll(reaction: reaction)
-                        if countAll != 0 {
-                            let countProduct = analytics.countForProduct(reaction: reaction)
-                            let h = Double(countProduct.first!.value) / Double(countAll) * 100
-                            let k = countProduct.first!.key
-                            NavigationLink {
-                                EachReactionView(countProduct: countProduct, countAll: countAll, reaction: reaction)
-                            } label: {
-                                RectangleView(reaction: reaction, percent: Int(h), product: k.name!)
+            if reactions.isEmpty {
+                Spacer()
+                Text("Пока не добавлено ни одной реакции ни в один из приёмов пищи.")
+                    .foregroundStyle(Color.secondary)
+                    .padding(.horizontal)
+                Spacer()
+            } else {
+                ScrollView {
+                    VStack {
+                        ForEach(reactions) { reaction in
+                            let countAll = analytics.countAll(reaction: reaction)
+                            if countAll != 0 {
+                                let countProduct = analytics.countForProduct(reaction: reaction)
+                                let h = Double(countProduct.first!.value) / Double(countAll) * 100
+                                let k = countProduct.first!.key
+                                NavigationLink {
+                                    EachReactionView(countProduct: countProduct, countAll: countAll, reaction: reaction)
+                                } label: {
+                                    RectangleView(reaction: reaction, percent: Int(h), product: k.name!)
+                                }
+                                
                             }
-                            
                         }
                     }
                 }
+                .navigationTitle("Реакции")
             }
-            .navigationTitle("Реакции")
         }
         .onAppear {
             reactions = reaction_vm.reactions
         }
     }
-}
-
-#Preview {
-    ReactionsView()
-        .environment(ReactionViewModel())
-        .environment(Analytics())
-        .environment(ProductViewModel())
 }
 
 struct RectangleView: View {
@@ -109,3 +110,11 @@ struct EachReactionView: View {
         }
     }
 }
+
+#Preview {
+    ReactionsView()
+        .environment(ReactionViewModel())
+        .environment(Analytics())
+        .environment(ProductViewModel())
+}
+

@@ -1,5 +1,5 @@
 //
-//  AddMealView.swift
+//  AddProductView.swift
 //  HelpForMum
 //
 //  Created by Настя on 26.08.2024.
@@ -7,13 +7,20 @@
 
 import SwiftUI
 
-struct AddMealView: View {
+struct AddProductToBaseView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    @Environment(ProductViewModel.self) var products_vm
+    
     @State var textFieldText: String = ""
+    
     var body: some View {
+        
+        
         NavigationStack {
             
             VStack(spacing: 20) {
-                TextField("Напишите название блюда...", text: $textFieldText)
+                TextField("Напишите название продукта...", text: $textFieldText)
                     .font(.title2)
                     .padding()
                     .background(Color.secondary.opacity(0.2))
@@ -21,7 +28,11 @@ struct AddMealView: View {
                 
                 
                 Button("Готово") {
-                    //скоро будет
+                    if textFieldText.count > 1 {
+                        _ = products_vm.addProduct(name: textFieldText)[0]
+                        dismiss()
+                    }
+                    
                 }
                 .font(.title2)
                 .foregroundStyle(Color.white)
@@ -30,26 +41,17 @@ struct AddMealView: View {
                 .background(Color.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
-                Button("Добавить новое блюдо") {
-                    //скоро будет
-                }
-                .font(.title2)
-                .foregroundStyle(Color.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.green)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 
                 Spacer()
             }
             .padding()
-            .navigationTitle("Добавление блюда")
+            .navigationTitle("Добавление продукта")
         }
-        
     }
 }
 
 #Preview {
-    AddMealView()
+    AddProductToBaseView()
+        .environment(ProductViewModel())
 }

@@ -83,7 +83,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
                     }
                     
                     NavigationLink {
-                        AddMealView()
+                        AddMealToFoodIntakeView(foodIntake: foodIntake)
                     } label: {
                         VStack {
                             Image(systemName: "plus")
@@ -118,15 +118,15 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
     }
 }
 
-#Preview {
-    SubViewForPreview()
-        .environment(FoodIntakeViewModel())
-}
-
 struct SubViewForPreview: View {
     @Environment(FoodIntakeViewModel.self) var vm
     
     var body: some View {
         BreakfastLunchPoldnikDinnerHelp(foodIntake: vm.foodIntakes[0])
     }
+}
+
+#Preview {
+    SubViewForPreview()
+        .environment(FoodIntakeViewModel())
 }

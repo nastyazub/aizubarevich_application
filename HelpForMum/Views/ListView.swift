@@ -18,23 +18,9 @@ struct ListView: View {
                 }
                 
                 NavigationLink {
-                    List {
-                        NavigationLink {
-                            
-                        } label: {
-                            Text("Добавить")
-                        }
-                        
-                        NavigationLink {
-                            ChartView()
-                        } label: {
-                            Text("Посмотреть графики")
-                        }
-
-
-                    }
+                    ChartView()
                 } label: {
-                    Text("Рост и вес")
+                    Text("Посмотреть графики")
                 }
 
             }

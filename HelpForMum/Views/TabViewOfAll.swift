@@ -19,6 +19,12 @@ struct TabViewOfAll: View {
                 .tabItem {
                     Image(systemName: "menucard")
                 }
+            
+            MealsView()
+                .tabItem {
+                    Image(systemName: "fork.knife")
+                }
+            
             ContactWithDeveloperView()
                 .tabItem {
                     Image(systemName: "mail.fill")
