@@ -30,7 +30,7 @@ import CoreData
     
     // MARK: ФУНКЦИИ
     
-    ///  Загрузка продуктов из базы данных, добавление их в список продуктов.
+    ///  Загрузка реакций из базы данных, добавление их в список реакций.
     func getReactions() {
         let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
         

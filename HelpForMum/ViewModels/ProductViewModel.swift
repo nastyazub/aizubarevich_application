@@ -11,9 +11,11 @@
  1. Выгрузка продуктов из базы данных.
  2. Добавление продукта в базу данных.
  3. Добавление продукта в определённый приём пищи.
- 4. Удаление продукта из базы данных.
- 5. Удаление продукта из приёма пищи.
- 6. Сохранение изменений продуктов в базу данных.
+ 4. Добавление продукта в определённое блюдо.
+ 5. Удаление продукта из базы данных.
+ 6. Удаление продукта из приёма пищи.
+ 7. Удаление продукта из блюда.
+ 8. Сохранение изменений продуктов в базу данных.
  */
 
 import Foundation
@@ -85,8 +87,10 @@ import CoreData
         }
     }
     
-    // MARK: COMMENT
-    
+    /// Добавление продукта в определённое блюдо.
+    /// - Parameters:
+    ///   - product: Элемент базы данных (продукт), который  нужно добавить.
+    ///   - meal: Элемент базы данных (блюдо), куда нужно добавить продукт.
     func addProductToMeal(product: ProductEntity, meal: MealEntity) {
         let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
         let filter = NSPredicate(format: "meals CONTAINS %@ AND id == %d", meal, product.id!)
@@ -135,6 +139,10 @@ import CoreData
         }
     }
     
+    /// Удаление продукта из блюда.
+    /// - Parameters:
+    ///   - offsets: Множество целочисленных значений, равное положению с списке продуктов, которые нужно удалить.
+    ///   - meal: Элемент базы данных (блюдо), откуда нужно удалить продукт.
     func deleteFromMeal(at offsets: IndexSet, meal: MealEntity) {
         let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
         let filter = NSPredicate(format: "meals CONTAINS %@", meal)

@@ -5,12 +5,25 @@
 //  Created by Настя on 31.10.2024.
 //
 
+// Класс для аналитики реакций.
+// Функции:
+/*
+ 1. Подсчёт кол-ва появлений определённой реакции относительно продуктов.
+ 2. Создание словаря продуктов и количества приёмов пищи, когда продукт с определённой реакцией есть в обном приёме пищи.
+ */
+
 import Foundation
 import CoreData
 
 @Observable class Analytics {
     let manager = DataManager.instance
     
+    /// Подсчёт кол-ва появлений определённой реакции относительно продуктов.
+    ///
+    /// Функция считает общее кол-во продуктов, находящихся в приёмах пищи, где появлялась определённая реакция.
+    ///
+    /// - Parameter reaction: Элемент базы данных (реакция), которую нужно добавить.
+    /// - Returns: Количество появлениц реакции относительно продуктов.
     func countAll(reaction: ReactionEntity) -> Int {
         var countAll = 0
         let request = NSFetchRequest<FoodIntakeEntity>(entityName: "FoodIntakeEntity")
@@ -29,6 +42,9 @@ import CoreData
         return countAll
     }
     
+    /// Создание словаря продуктов и количества приёмов пищи, когда продукт с определённой реакцией есть в обном приёме пищи.
+    /// - Parameter reaction: Элемент базы данных (реакция), которую нужно добавить.
+    /// - Returns: Отсортированный словарь.
     func countForProduct(reaction: ReactionEntity) -> [Dictionary<ProductEntity, Int>.Element] {
         var dict: [ProductEntity : Int] = [:]
         let requestFirst = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
