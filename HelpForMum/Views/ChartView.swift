@@ -69,7 +69,7 @@ struct ChartHeight: View {
                 .foregroundStyle(Color.secondary)
                 .frame(height: 300)
         } else {
-            Chart(heights) { height in
+            Chart(heights.sorted() {$0.date! < $1.date!}) { height in
                 LineMark(
                     x: .value("Day", height.date!, unit: .day),
                     y: .value("Height", height.height)
@@ -123,7 +123,7 @@ struct ChartWeight: View {
                 .foregroundStyle(Color.secondary)
                 .frame(height: 300)
         } else {
-            Chart(weights) { weight in
+            Chart(weights.sorted() {$0.date! < $1.date!}) { weight in
                 LineMark(
                     x: .value("Day", weight.date!, unit: .day),
                     y: .value("Weight", weight.weight)

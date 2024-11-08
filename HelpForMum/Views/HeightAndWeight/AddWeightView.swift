@@ -30,11 +30,13 @@ struct AddWeightView: View {
                 
                 
                 Button("Готово") {
-                    if textFieldText.count > 0 {
+                    if textFieldText.count > 0{
                         textFieldText = textFieldText.replacingOccurrences(of: ",", with: ".")
                         if let weight = Double(textFieldText) {
-                            weight_vm.addWeight(weight: weight, date: date)
-                            dismiss()
+                            if weight >= 0 {
+                                weight_vm.addWeight(weight: weight, date: date)
+                                dismiss()
+                            }
                         }
                         
                     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddReactionToFoodIntakeView: View {
-    @Environment(ReactionViewModel.self) var vm
+    @Environment(ReactionViewModel.self) var reaction_vm
     @Environment(\.dismiss) var dismiss
     
     @State var textFieldText = ""
@@ -19,7 +19,7 @@ struct AddReactionToFoodIntakeView: View {
     
     var body: some View {
         NavigationStack {
-            if vm.reactions.isEmpty {
+            if reaction_vm.reactions.isEmpty {
                 Spacer()
                 Text("Пока нет реакций")
                 Spacer()
@@ -32,14 +32,21 @@ struct AddReactionToFoodIntakeView: View {
                     .padding()
                 
                 List {
-                    ForEach(vm.reactions) { reaction in
-                        if reaction.name!.contains(textFieldText) || textFieldText == "" {
-                            Text(reaction.name!)
-                                .onTapGesture {
-                                    prove(reaction: reaction)
-                                }
-                        }
-                    }
+                    ForEach(reaction_vm.reactions) { reaction in
+                        if let name = reaction.name {
+                            if name.lowercased().contains(textFieldText.lowercased()) || textFieldText == "" {
+                                Text(name)
+                                    .onTapGesture {
+                                        prove(reaction: reaction)
+                                    }
+                                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                        Button("Удалить") {
+                                            reaction_vm.deleteFromBase(reaction: reaction)
+                                        }
+                                        .tint(.red)
+                                    }
+                            }
+                        }                    }
                 }
                 .listStyle(.plain)
                 .alert("Нельзя", isPresented: $showAlert) {
@@ -58,7 +65,7 @@ struct AddReactionToFoodIntakeView: View {
             if products.isEmpty {
                 showAlert.toggle()
             } else {
-                vm.addReactionToFoodIntake(reaction: reaction, foodIntake: foodIntake)
+                reaction_vm.addReactionToFoodIntake(reaction: reaction, foodIntake: foodIntake)
                 dismiss()
             }
         }

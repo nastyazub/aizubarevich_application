@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddProductToFoodIntakeView: View {
     
-    @Environment(ProductViewModel.self) var vm
+    @Environment(ProductViewModel.self) var product_vm
     @Environment(\.dismiss) var dismiss
     let foodIntake: FoodIntakeEntity
     
@@ -17,7 +17,7 @@ struct AddProductToFoodIntakeView: View {
     
     var body: some View {
         NavigationStack() {
-            if vm.products.isEmpty {
+            if product_vm.products.isEmpty {
                 Spacer()
                 Text("Пока нет продуктов")
                     .foregroundStyle(Color.secondary)
@@ -32,13 +32,21 @@ struct AddProductToFoodIntakeView: View {
                     .padding()
                 
                 List {
-                    ForEach(vm.products) { product in
-                        if product.name!.lowercased().contains(textFieldText.lowercased()) || textFieldText == "" {
-                            Text(product.name!)
-                                .onTapGesture {
-                                    vm.addProductToFoodIntake(product: product, foodIntake: foodIntake)
-                                    dismiss()
-                                }
+                    ForEach(product_vm.products) { product in
+                        if let name = product.name {
+                            if name.lowercased().contains(textFieldText.lowercased()) || textFieldText == "" {
+                                Text(name)
+                                    .onTapGesture {
+                                        product_vm.addProductToFoodIntake(product: product, foodIntake: foodIntake)
+                                        dismiss()
+                                    }
+                                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                        Button("Удалить") {
+                                            product_vm.deleteFromBase(product: product)
+                                        }
+                                        .tint(.red)
+                                    }
+                            }
                         }
                     }
                 }

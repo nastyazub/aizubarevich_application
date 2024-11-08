@@ -47,17 +47,26 @@ struct ProductsInMealView: View {
     let meal: MealEntity
     
     var body: some View {
-        List {
+        NavigationStack {
             if let products = meal.products?.allObjects as? [ProductEntity] {
-                let products = products.sorted() {$0.name! < $1.name!}
-                ForEach(products) { product in
-                    Text(product.name ?? "")
+                if products.isEmpty {
+                    Text("Пока нет добавленных в состав продуктов.")
+                        .foregroundStyle(Color.secondary)
+                        .navigationTitle("Состав")
+                } else {
+                    List {
+                        let products = products.sorted() {$0.name! < $1.name!}
+                        ForEach(products) { product in
+                            Text(product.name ?? "")
+                        }
+                        .onDelete(perform: { indexSet in
+                            product_vm.deleteFromMeal(at: indexSet, meal: meal)
+                        })
+                    }
+                    .listStyle(.plain)
+                    .navigationTitle("Состав")
                 }
-                .onDelete(perform: { indexSet in
-                    product_vm.deleteFromMeal(at: indexSet, meal: meal)
-                })
             }
-            
         }
     }
 }
@@ -70,27 +79,40 @@ struct ProductForAdding: View {
     
     
     var body: some View {
-        HStack {
-            TextField("Название продукта", text: $textFieldText)
-            
-            Button(action: {
-                let product = product_vm.addProduct(name: textFieldText)[0]
-                product_vm.addProductToMeal(product: product, meal: meal)
-                textFieldText = ""
-            }, label: {
-                Image(systemName: "plus.circle.fill")
-            })
-        }
-        List {
-            let products = meal.products?.allObjects as! [ProductEntity]
-            ForEach(product_vm.products) { product in
-                if !products.contains(product) && (product.name!.lowercased().contains(textFieldText.lowercased()) || textFieldText == "") {
-                    Text(product.name!)
-                        .onTapGesture {
-                            product_vm.addProductToMeal(product: product, meal: meal)
-                        }
+        NavigationStack {
+            HStack {
+                TextField("Название продукта...", text: $textFieldText)
+                    .font(.title2)
+                    .padding()
+                    .background(Color.secondary.opacity(0.2))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding()
+                
+                Button(action: {
+                    if !textFieldText.isEmpty {
+                        let product = product_vm.addProduct(name: textFieldText)[0]
+                        product_vm.addProductToMeal(product: product, meal: meal)
+                        textFieldText = ""
+                    }
+                }, label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title2)
+                        .padding(.trailing)
+                })
+            }
+            .navigationTitle("Добавление в состав")
+            List {
+                let products = meal.products?.allObjects as! [ProductEntity]
+                ForEach(product_vm.products) { product in
+                    if !products.contains(product) && (product.name!.lowercased().contains(textFieldText.lowercased()) || textFieldText == "") {
+                        Text(product.name!)
+                            .onTapGesture {
+                                product_vm.addProductToMeal(product: product, meal: meal)
+                            }
+                    }
                 }
             }
+            .listStyle(.plain)
         }
     }
 }

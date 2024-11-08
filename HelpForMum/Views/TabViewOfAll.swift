@@ -41,4 +41,5 @@ struct TabViewOfAll: View {
         .environment(Analytics())
         .environment(HeightViewModel())
         .environment(WeightViewModel())
+        .environment(MealViewModel())
 }

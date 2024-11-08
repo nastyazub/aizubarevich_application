@@ -30,8 +30,10 @@ struct AddHeightView: View {
                 Button("Готово") {
                     if textFieldText.count > 0 {
                         if let height = Int(textFieldText) {
-                            height_vm.addHeight(height: height, date: date)
-                            dismiss()
+                            if height >= 0 {
+                                height_vm.addHeight(height: height, date: date)
+                                dismiss()
+                            }
                         }
                         
                     }
