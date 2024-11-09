@@ -1,29 +1,26 @@
 //
-//  AddReactionView.swift
+//  EditProductView.swift
 //  HelpForMum
 //
-//  Created by Настя on 26.08.2024.
+//  Created by Настя on 09.11.2024.
 //
-
-// Страница добавления реакции в базу данных.
 
 import SwiftUI
 
-struct AddReactionToBaseView: View {
+struct EditProductView: View {
     
-    // Среды
-    @Environment(ReactionViewModel.self) var reaction_vm
     @Environment(\.dismiss) var dismiss
     
-    @State var textFieldText: String = ""
+    let product: ProductEntity
     
+    @State var textFieldText: String = ""
     @State var showAlert: Bool = false
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
                 
-                TextField("Напишите название реакции...", text: $textFieldText)
+                TextField("Напишите название продукта...", text: $textFieldText)
                     .font(.title2)
                     .padding()
                     .background(Color.secondary.opacity(0.2))
@@ -31,7 +28,7 @@ struct AddReactionToBaseView: View {
                 
                 Button(action: {
                     if textFieldText.count > 1 {
-                        reaction_vm.addReaction(name: textFieldText)
+                        product.name = textFieldText
                         dismiss()
                     } else {
                         showAlert = true
@@ -48,18 +45,30 @@ struct AddReactionToBaseView: View {
                 .alert("Неправильный ввод", isPresented: $showAlert) {
                     Button("Ок", role: .cancel) { }
                 } message: {
-                    Text("Нельзя оставить поле пустым. Введите название реакции")
+                    Text("Нельзя оставить поле пустым. Введите название продукта")
                 }
                 
                 Spacer()
             }
             .padding()
-            .navigationTitle("Добавление реакции")
+            .navigationTitle("Изменение продукта")
+        }
+        .onAppear {
+            textFieldText = product.name!
         }
     }
 }
 
+struct subViewForPreview_EditProduct: View {
+    
+    @Environment(ProductViewModel.self) var product_vm
+    
+    var body: some View {
+        EditProductView(product: product_vm.products[0])
+    }
+}
+
 #Preview {
-    AddReactionToBaseView()
-        .environment(ReactionViewModel())
+    subViewForPreview_EditProduct()
+        .environment(ProductViewModel())
 }

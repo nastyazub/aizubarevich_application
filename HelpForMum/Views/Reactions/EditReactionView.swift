@@ -1,22 +1,19 @@
 //
-//  AddReactionView.swift
+//  EditReactionView.swift
 //  HelpForMum
 //
-//  Created by Настя on 26.08.2024.
+//  Created by Настя on 09.11.2024.
 //
-
-// Страница добавления реакции в базу данных.
 
 import SwiftUI
 
-struct AddReactionToBaseView: View {
+struct EditReactionView: View {
     
-    // Среды
-    @Environment(ReactionViewModel.self) var reaction_vm
     @Environment(\.dismiss) var dismiss
     
-    @State var textFieldText: String = ""
+    let reaction: ReactionEntity
     
+    @State var textFieldText: String = ""
     @State var showAlert: Bool = false
     
     var body: some View {
@@ -31,7 +28,7 @@ struct AddReactionToBaseView: View {
                 
                 Button(action: {
                     if textFieldText.count > 1 {
-                        reaction_vm.addReaction(name: textFieldText)
+                        reaction.name = textFieldText
                         dismiss()
                     } else {
                         showAlert = true
@@ -54,12 +51,24 @@ struct AddReactionToBaseView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Добавление реакции")
+            .navigationTitle("Изменение реакции")
+        }
+        .onAppear {
+            textFieldText = reaction.name!
         }
     }
 }
 
+struct subViewForPreview_EditReaction: View {
+    
+    @Environment(ReactionViewModel.self) var reaction_vm
+    
+    var body: some View {
+        EditReactionView(reaction: reaction_vm.reactions[0])
+    }
+}
+
 #Preview {
-    AddReactionToBaseView()
+    subViewForPreview_EditReaction()
         .environment(ReactionViewModel())
 }

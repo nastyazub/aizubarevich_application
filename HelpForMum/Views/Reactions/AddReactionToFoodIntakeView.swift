@@ -48,15 +48,22 @@ struct AddReactionToFoodIntakeView: View {
                                             reaction_vm.deleteFromBase(reaction: reaction)
                                         }
                                         .tint(.red)
+                                        
+                                        NavigationLink {
+                                            EditReactionView(reaction: reaction)
+                                        } label: {
+                                            Text("Изменить")
+                                        }
                                     }
                             }
-                        }                    }
+                        }
+                    }
                 }
                 .listStyle(.plain)
                 .alert("Нельзя", isPresented: $showAlert) {
                     Button("Ок", role: .cancel) { }
                 } message: {
-                    Text("Сначала нужно добавить продукты.")
+                    Text("Сначала нужно добавить реакции.")
                 }
             }
             AddReactionButton()

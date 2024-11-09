@@ -37,6 +37,8 @@
 		4DCB70F82CDBF14000FCAB88 /* AddMealToBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB70F72CDBF14000FCAB88 /* AddMealToBaseView.swift */; };
 		4DCB70FA2CDBF87000FCAB88 /* MealStructureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB70F92CDBF87000FCAB88 /* MealStructureView.swift */; };
 		4DCB71002CDC149A00FCAB88 /* DataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB70FE2CDC149A00FCAB88 /* DataContainer.xcdatamodeld */; };
+		4DCB710A2CDFCF0F00FCAB88 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71092CDFCF0F00FCAB88 /* EditProductView.swift */; };
+		4DCB710C2CDFD15F00FCAB88 /* EditReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB710B2CDFD15F00FCAB88 /* EditReactionView.swift */; };
 		4DEB6F002CD411BE0076D658 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */; };
 		4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */; };
 		4DEB6F062CD65BD20076D658 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F052CD65BD20076D658 /* ListView.swift */; };
@@ -98,6 +100,8 @@
 		4DCB70F72CDBF14000FCAB88 /* AddMealToBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealToBaseView.swift; sourceTree = "<group>"; };
 		4DCB70F92CDBF87000FCAB88 /* MealStructureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealStructureView.swift; sourceTree = "<group>"; };
 		4DCB70FF2CDC149A00FCAB88 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4DCB71092CDFCF0F00FCAB88 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
+		4DCB710B2CDFD15F00FCAB88 /* EditReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReactionView.swift; sourceTree = "<group>"; };
 		4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsOfReactionsAndProductsViewModel.swift; sourceTree = "<group>"; };
 		4DEB6F052CD65BD20076D658 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 			children = (
 				4D4ABB2A2C7CB4FC00E576C6 /* AddProductToBaseView.swift */,
 				4D4ABB472CC4331900E576C6 /* AddProductToFoodIntakeView.swift */,
+				4DCB71092CDFCF0F00FCAB88 /* EditProductView.swift */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */,
 				4D4ABB512CD2855900E576C6 /* AddReactionToFoodIntakeView.swift */,
 				4D4ABB2C2C7CBEE100E576C6 /* AddReactionToBaseView.swift */,
+				4DCB710B2CDFD15F00FCAB88 /* EditReactionView.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCB70F22CDB656300FCAB88 /* MealViewModel.swift in Sources */,
+				4DCB710C2CDFD15F00FCAB88 /* EditReactionView.swift in Sources */,
 				4D4ABB2D2C7CBEE100E576C6 /* AddReactionToBaseView.swift in Sources */,
 				4DEB6F182CD7DF3B0076D658 /* WeightViewModel.swift in Sources */,
 				4D4ABB502CD0ECBA00E576C6 /* ReactionViewModel.swift in Sources */,
@@ -433,6 +440,7 @@
 				4D4ABB422CA9B88700E576C6 /* TimeOfFoodViewModel.swift in Sources */,
 				4DCB71002CDC149A00FCAB88 /* DataContainer.xcdatamodeld in Sources */,
 				4DCB70F62CDB7EEE00FCAB88 /* AddMealToFoodIntakeView.swift in Sources */,
+				4DCB710A2CDFCF0F00FCAB88 /* EditProductView.swift in Sources */,
 				4D4ABB3C2CA05DA700E576C6 /* ProductViewModel.swift in Sources */,
 				4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */,
 				4D4ABB232C6A3DF900E576C6 /* Home.swift in Sources */,

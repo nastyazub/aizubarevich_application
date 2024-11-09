@@ -49,6 +49,12 @@ struct AddProductToFoodIntakeView: View {
                                             product_vm.deleteFromBase(product: product)
                                         }
                                         .tint(.red)
+                                        
+                                        NavigationLink {
+                                            EditProductView(product: product)
+                                        } label: {
+                                            Text("Изменить")
+                                        }
                                     }
                             }
                         }
