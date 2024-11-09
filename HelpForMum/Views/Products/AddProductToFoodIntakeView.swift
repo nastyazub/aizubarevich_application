@@ -28,7 +28,7 @@ struct AddProductToFoodIntakeView: View {
                 Spacer()
             }
             else {
-                TextField("Напишите название продукта...", text: $textFieldText)
+                TextField("Поиск...", text: $textFieldText)
                     .font(.title2)
                     .padding()
                     .background(Color.secondary.opacity(0.2))

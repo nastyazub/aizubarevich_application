@@ -28,7 +28,7 @@ struct AddReactionToFoodIntakeView: View {
                 Text("Пока нет реакций")
                 Spacer()
             } else {
-                TextField("Напишите название реакции...", text: $textFieldText)
+                TextField("Поик...", text: $textFieldText)
                     .font(.title2)
                     .padding()
                     .background(Color.secondary.opacity(0.2))
