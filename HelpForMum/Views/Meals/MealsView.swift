@@ -5,15 +5,20 @@
 //  Created by Настя on 06.11.2024.
 //
 
+// Страница просмотра блюд. Список блюд.
+
 import SwiftUI
 
 struct MealsView: View {
     
+    // Среда
     @Environment(MealViewModel.self) var meal_vm
+    
     @State var meals: [MealEntity] = []
     
-    @State var showAddingView: Bool = false
-    @State var showEditingView: Bool = false
+    @State var showAddingView: Bool = false // Индикатор появления sheet - добавления блюда
+    
+    // MARK: ТЕЛО
     
     var body: some View {
         NavigationStack {
@@ -25,7 +30,6 @@ struct MealsView: View {
                     Spacer()
                 } else {
                     ForEach(meal_vm.meals) { meal in
-                        
                         HStack {
                             NavigationLink {
                                 MealStructureView(meal: meal)
@@ -34,7 +38,7 @@ struct MealsView: View {
                             }
 
                             Button(action: {
-                                meal_vm.deleteFromBase(meal: meal)
+                                meal_vm.deleteFromBase(meal: meal) // Удаление блюда
                             }, label: {
                                 Image(systemName: "trash")
                                     .padding(.trailing)
@@ -48,7 +52,7 @@ struct MealsView: View {
             Button(action: {
                 showAddingView.toggle()
             }, label: {
-                AddMealButton()
+                AddMealButton() // Кнопка добавления блюда
             })
             .popover(isPresented: $showAddingView, content: {
                 AddMealToBaseView()
@@ -58,6 +62,8 @@ struct MealsView: View {
     }
 }
 
+// MARK: ДИЗАЙН БЛЮДА
+// Дизайн блюда
 struct RectangleForMealView: View {
     
     let meal: MealEntity

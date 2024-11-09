@@ -69,18 +69,9 @@ import CoreData
     func addMealToFoodIntake(meal: MealEntity, foodIntake: FoodIntakeEntity) {
         if let products = meal.products?.allObjects as? [ProductEntity] {
             for product in products {
-                let request = NSFetchRequest<FoodIntakeEntity>(entityName: "FoodIntakeEntity")
-                let filter = NSPredicate(format: "products CONTAINS %@", product)
-                request.predicate = filter
-                
-                do {
-                    let foodIntakes = try manager.context.fetch(request)
-                    if foodIntakes.isEmpty {
-                        foodIntake.addToProducts(product)
-                        save()
-                    }
-                } catch let error {
-                    print("Ошибка добавления блюда в приём пищи. \(error)")
+                if !foodIntake.products!.contains(product) {
+                    foodIntake.addToProducts(product)
+                    save()
                 }
             }
         }

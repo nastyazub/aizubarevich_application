@@ -5,6 +5,8 @@
 //  Created by Настя on 05.11.2024.
 //
 
+// Кнопка для связи с разрабочиком
+
 import SwiftUI
 
 struct ContactWithDeveloperView: View {

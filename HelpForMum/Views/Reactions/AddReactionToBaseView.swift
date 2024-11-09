@@ -5,10 +5,13 @@
 //  Created by Настя on 26.08.2024.
 //
 
+// Страница добавления реакции в базу данных.
+
 import SwiftUI
 
 struct AddReactionToBaseView: View {
     
+    // Среды
     @Environment(ReactionViewModel.self) var vm
     @Environment(\.dismiss) var dismiss
     
@@ -16,8 +19,8 @@ struct AddReactionToBaseView: View {
     
     var body: some View {
         NavigationStack {
-            
             VStack(spacing: 20) {
+                
                 TextField("Напишите название реакции...", text: $textFieldText)
                     .font(.title2)
                     .padding()

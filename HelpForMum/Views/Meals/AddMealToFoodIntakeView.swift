@@ -5,18 +5,21 @@
 //  Created by Настя on 06.11.2024.
 //
 
+// Страница добаления блюда в приём пищи. Результат: в приём пищи добавляются продукты из блюда.
+
 import SwiftUI
 
 struct AddMealToFoodIntakeView: View {
     
+    // Среды
     @Environment(MealViewModel.self) var meal_vm
     @Environment(\.dismiss) var dismiss
     
     @State var textFieldText: String = ""
-    @State var showAddingView: Bool = false
     
-    let foodIntake: FoodIntakeEntity
+    @State var showAddingView: Bool = false // Индикатор появления sheet - добавления блюда
     
+    let foodIntake: FoodIntakeEntity // Приём пищи
     
     var body: some View {
         NavigationStack() {
@@ -45,7 +48,7 @@ struct AddMealToFoodIntakeView: View {
                                     }
                                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                         NavigationLink {
-                                            MealStructureView(meal: meal)
+                                            MealStructureView(meal: meal) // Просмотр, изменение состава блюда
                                         } label: {
                                             Text("Состав")
                                         }
@@ -72,6 +75,9 @@ struct AddMealToFoodIntakeView: View {
     }
 }
 
+// MARK: КНОПКА ДОБАВЛЕНИЯ
+
+// Кнопка добавления блюда в базу данных
 struct AddMealButton: View {
     var body: some View {
             Text("+ Добавить")
@@ -86,6 +92,7 @@ struct AddMealButton: View {
     }
 }
 
+// Дополнительный view для того, чтобы передать элемент базы данных
 struct subViewForPreview_MealToFoodIntake: View {
     
     @Environment(FoodIntakeViewModel.self) var foodIntake_vm

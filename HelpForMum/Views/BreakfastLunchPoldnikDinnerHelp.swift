@@ -5,22 +5,30 @@
 //  Created by Настя on 12.08.2024.
 //
 
+// Дизайн приёмов пищи. Через него происходит добавление, удаление, просмотр продуктов и реакций, относящихся к определённому приёму пищи.
+
 import SwiftUI
 
 struct BreakfastLunchPoldnikDinnerHelp: View {
     
-    let title: String
-    let textColor: Color
-    let backgroundColor: Color
-    let id: String
-    let time: TimeOfFoodEntity
+    // MARK: СВОЙСТВА
     
-    let foodIntake: FoodIntakeEntity
+    // Среды
     @Environment(FoodIntakeViewModel.self) var vm
     @Environment(\.colorScheme) var colorScheme
     
-    let date: Date
+    // Приём пищи
+    let foodIntake: FoodIntakeEntity
     
+    // Элементы приёма пищи
+    let title: String
+    let id: String
+    let time: TimeOfFoodEntity
+    let date: Date
+    let textColor: Color
+    let backgroundColor: Color
+    
+    // Инициализация приёма пищи, чтобы присвоить элементам приёма пищи их значения
     init(foodIntake: FoodIntakeEntity) {
         self.foodIntake = foodIntake
         self.title = (foodIntake.type_of_time?.name)!
@@ -29,32 +37,31 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
         self.time = foodIntake.type_of_time!
         
         if title == "Завтрак" {
-            self.textColor = Color("BreakfastTextColor") //Plum
+            self.textColor = Color("BreakfastTextColor")
             self.backgroundColor = Color("BreakfastBackgroundColor")
         }
         else if title == "Обед" {
-            self.textColor = Color("LunchTextColor")//Moss
+            self.textColor = Color("LunchTextColor")
             self.backgroundColor = Color("LunchBackgroundColor")
         }
         else if title == "Перекус" {
-            self.textColor = Color("PoldnikTextColor") //Tangerine
+            self.textColor = Color("PoldnikTextColor")
             self.backgroundColor = Color("PoldnikBackgroundColor")
         }
         else {
-            self.textColor = Color("DinnerTextColor") //Maroon
+            self.textColor = Color("DinnerTextColor")
             self.backgroundColor = Color("DinnerBackgroundColor")
         }
     }
     
+    // MARK: ТЕЛО
     
     var body: some View {
-        
-        
         HStack {
             HStack {
                 
                 NavigationLink {
-                    ContentOfFoodIntakeView(foodIntake: foodIntake)
+                    ContentOfFoodIntakeView(foodIntake: foodIntake) // Страница, где показываются продукты и реакции приёма пищи
                 } label: {
                     Text(title)
                         .foregroundStyle(Color(textColor))
@@ -62,10 +69,9 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
-                
                 Menu {
                     NavigationLink {
-                        AddReactionToFoodIntakeView(foodIntake: foodIntake)
+                        AddReactionToFoodIntakeView(foodIntake: foodIntake) // Добавление реакции
                     } label: {
                         VStack {
                             Image(systemName: "plus")
@@ -74,7 +80,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
                     }
                     
                     NavigationLink {
-                        AddProductToFoodIntakeView(foodIntake: foodIntake)
+                        AddProductToFoodIntakeView(foodIntake: foodIntake) // Добавление продукта
                     } label: {
                         VStack {
                             Image(systemName: "plus")
@@ -83,7 +89,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
                     }
                     
                     NavigationLink {
-                        AddMealToFoodIntakeView(foodIntake: foodIntake)
+                        AddMealToFoodIntakeView(foodIntake: foodIntake) // Добавление блюда
                     } label: {
                         VStack {
                             Image(systemName: "plus")
@@ -105,7 +111,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
             .shadow(color: .secondary,radius: colorScheme == .dark ? 10 : 0)
             .padding(8)
             
-            Button {
+            Button { // Кнопка удаления приёма пищи
                 vm.delete(foodIntake: foodIntake)
             } label: {
                 Image(systemName: "trash")
@@ -118,6 +124,7 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
     }
 }
 
+// Так как надо передавать элемент базы данных, делаю отдельный Вью, где создаю его.
 struct SubViewForPreview: View {
     @Environment(FoodIntakeViewModel.self) var vm
     

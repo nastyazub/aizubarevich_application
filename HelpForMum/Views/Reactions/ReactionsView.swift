@@ -5,36 +5,42 @@
 //  Created by Настя on 31.10.2024.
 //
 
+// Страница отображения аналитики реакций
+
 import SwiftUI
 
 struct ReactionsView: View {
     
+    // Среды
     @Environment(ReactionViewModel.self) var reaction_vm
     @Environment(ProductViewModel.self) var product_vm
     @Environment(Analytics.self) var analytics
+    
     @State var reactions: [ReactionEntity] = []
     
     var body: some View {
         NavigationStack {
             if reactions.isEmpty {
                 Spacer()
+                
                 Text("Пока не добавлено ни одной реакции ни в один из приёмов пищи.")
                     .foregroundStyle(Color.secondary)
                     .padding(.horizontal)
+                
                 Spacer()
             } else {
                 ScrollView {
                     VStack {
                         ForEach(reactions) { reaction in
-                            let countAll = analytics.countAll(reaction: reaction)
+                            let countAll = analytics.countAll(reaction: reaction) // Кол-во появлений реакции
                             if countAll != 0 {
-                                let countProduct = analytics.countForProduct(reaction: reaction)
-                                let h = Double(countProduct.first!.value) / Double(countAll) * 100
-                                let k = countProduct.first!.key
+                                let countProduct = analytics.countForProduct(reaction: reaction) // Отсортированный словарь продуктов и их кол-ва появления вместе с реакцией
+                                let countProductFirst = Double(countProduct.first!.value) / Double(countAll) * 100 // Процент самого вероятного продукта
+                                let nameOfProductFirst = countProduct.first!.key // Название самого вероятного продукта
                                 NavigationLink {
-                                    EachReactionView(countProduct: countProduct, countAll: countAll, reaction: reaction)
+                                    EachReactionView(countProduct: countProduct, countAll: countAll, reaction: reaction) // Таблица продуктов и их вероятностей
                                 } label: {
-                                    RectangleView(reaction: reaction, percent: Int(h), product: k.name!)
+                                    RectangleView(reaction: reaction, percent: Int(countProductFirst), product: nameOfProductFirst.name!) // Дизайн реакции
                                 }
                                 
                             }
@@ -49,6 +55,8 @@ struct ReactionsView: View {
         }
     }
 }
+
+// MARK: ДИЗАЙН РЕАКЦИЙ
 
 struct RectangleView: View {
     let reaction: ReactionEntity
@@ -84,6 +92,8 @@ struct RectangleView: View {
         .padding()
     }
 }
+
+// MARK: ПРОДУКТЫ И ПРОЦЕНТЫ
 
 struct EachReactionView: View {
     

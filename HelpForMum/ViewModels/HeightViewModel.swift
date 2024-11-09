@@ -5,6 +5,16 @@
 //  Created by Настя on 03.11.2024.
 //
 
+// Класс взаимодействия со значениями роста.
+// Функции:
+/*
+ 1. Выгрузка значений роста из базы данных.
+ 2. Добавление значения роста в базу данных.
+ 3. Удаление значения роста из базы данных.
+ 4. Сохранение изменений значений роста в базу данных.
+ */
+
+
 import Foundation
 import CoreData
 
@@ -12,10 +22,14 @@ import CoreData
     let manager = DataManager.instance
     var heights: [HeightEntity] = []
     
+    //Загрузка данных
     init() {
         self.getHeights()
     }
     
+    // MARK: ФУНКЦИИ
+    
+    /// Выгрузка значений роста из базы данных.
     func getHeights() {
         let request = NSFetchRequest<HeightEntity>(entityName: "HeightEntity")
         
@@ -26,6 +40,10 @@ import CoreData
         }
     }
     
+    /// Добавление значения роста в базу данных.
+    /// - Parameters:
+    ///   - height: Рост ребёнка в сантиметрах.
+    ///   - date: Дата измерения роста.
     func addHeight(height: Int, date: Date) {
         let request = NSFetchRequest<HeightEntity>(entityName: "HeightEntity")
         let filter = NSPredicate(format: "date == %@", date as NSDate)
@@ -41,43 +59,25 @@ import CoreData
                 heights.append(newHeight)
                 save()
             } else {
-                let prevHeight = heights[0].height
                 heights[0].height = Int64(height)
                 save()
-                print("Рост изменён на \(height) у \(String(describing: heights[0].date)) c \(prevHeight)")
+                print("Рост изменён на \(height)")
             }
-            
-            print("Длина ростов: \(heights.count)")
-            
         } catch let error {
             print("Ошибка добавления роста. \(error)")
         }
     }
     
-    func searchHeightByDate(date: Date) -> [HeightEntity] {
-        let request = NSFetchRequest<HeightEntity>(entityName: "HeightEntity")
-        let filter = NSPredicate(format: "date == %@", date as NSDate)
-        request.predicate = filter
-        
-        do {
-            heights = try manager.context.fetch(request)
-            if !heights.isEmpty && heights.count == 1 {
-                return heights
-            } else if heights.count > 1 {
-                print("2 значения")
-            }
-        } catch let error {
-            print("Ошибка поиска роста по дате. \(error)")
-        }
-        
-        return []
-    }
+    // MARK: ПОКА УТОЧНЯЮ НЕОБХОДИМОСТЬ
     
+    /// Удаление значения роста из базы данных.
+    /// - Parameter height: Элемент базы данных (рост), который нужно удалить.
     func delete(height: HeightEntity) {
         manager.context.delete(height)
         save()
     }
     
+    /// Сохранение изменений значений роста в базу данных.
     func save() {
         heights.removeAll()
         

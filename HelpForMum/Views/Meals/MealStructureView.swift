@@ -5,14 +5,17 @@
 //  Created by Настя on 06.11.2024.
 //
 
+// Страница просмотра, изменение, добавления состава блюда.
+
 import SwiftUI
 
 struct MealStructureView: View {
     
+    // Среды
     @Environment(ProductViewModel.self) var product_vm
     @Environment(\.dismiss) var dismiss
-    let meal: MealEntity
     
+    let meal: MealEntity // Блюдо
     
     var body: some View {
         NavigationStack {
@@ -41,6 +44,8 @@ struct MealStructureView: View {
     }
 }
 
+// MARK: ДОБАВЛЕННЫЕ ПРОДУКТЫ
+// Список добавленнных в блюдо продуктов
 struct ProductsInMealView: View {
     
     @Environment(ProductViewModel.self) var product_vm
@@ -55,7 +60,7 @@ struct ProductsInMealView: View {
                         .navigationTitle("Состав")
                 } else {
                     List {
-                        let products = products.sorted() {$0.name! < $1.name!}
+                        let products = products.sorted() {$0.name! < $1.name!} // сортировка по алфавиту
                         ForEach(products) { product in
                             Text(product.name ?? "")
                         }
@@ -71,15 +76,20 @@ struct ProductsInMealView: View {
     }
 }
 
+// MARK: ПРОДУКТЫ ДОБАВЛЕНИЯ
+// Список продуктов, которых можно добавить в блюдо.
 struct ProductForAdding: View {
     
+    // Среда
     @Environment(ProductViewModel.self) var product_vm
+    
     @State var textFieldText: String = ""
     let meal: MealEntity
     
     
     var body: some View {
         NavigationStack {
+            // Поле поиска
             HStack {
                 TextField("Название продукта...", text: $textFieldText)
                     .font(.title2)
@@ -101,9 +111,11 @@ struct ProductForAdding: View {
                 })
             }
             .navigationTitle("Добавление в состав")
+            
+            // Список
             List {
                 let products = meal.products?.allObjects as! [ProductEntity]
-                ForEach(product_vm.products) { product in
+                ForEach(product_vm.products.sorted() {$0.name! < $1.name!}) { product in // Сортировка по алфавиту
                     if !products.contains(product) && (product.name!.lowercased().contains(textFieldText.lowercased()) || textFieldText == "") {
                         Text(product.name!)
                             .onTapGesture {

@@ -5,11 +5,16 @@
 //  Created by Настя on 03.11.2024.
 //
 
+// Отображение значений роста и веса.
+
 import SwiftUI
 
 struct HeightAndWeightView: View {
+    
+    // Среды
     @Environment(HeightViewModel.self) var height_vm
     @Environment(WeightViewModel.self) var weight_vm
+    
     let selectedDate: Date
     
     var body: some View {
@@ -29,7 +34,7 @@ struct HeightAndWeightView: View {
             
             HStack {
                 NavigationLink {
-                    AddHeightView(date: selectedDate)
+                    AddHeightView(date: selectedDate) // Добавление, изменение, 
                 } label: {
                     Image(systemName: "figure.arms.open")
                         .font(.title)

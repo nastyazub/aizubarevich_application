@@ -5,11 +5,16 @@
 //  Created by Настя on 31.08.2024.
 //
 
+// Страница отображения продуктов и реакций приёма пищи
+
 import SwiftUI
 
 struct ContentOfFoodIntakeView: View {
+    
+    // Среды
     @Environment(FoodIntakeViewModel.self) var foodIntake_vm
     @Environment(ProductViewModel.self) var product_vm
+    
     let foodIntake: FoodIntakeEntity
     
     var body: some View {
@@ -20,7 +25,7 @@ struct ContentOfFoodIntakeView: View {
                         .foregroundStyle(Color.secondary)
                 } else {
                     HStack {
-                        ProductsInFoodIntakeView(products: products, foodIntake: foodIntake)
+                        ProductsAndReactionsInFoodIntakeView(products: products, foodIntake: foodIntake)
                             .padding(.top)
                     }
                     .navigationTitle(foodIntake.type_of_time?.name ?? "")
@@ -30,12 +35,16 @@ struct ContentOfFoodIntakeView: View {
     }
 }
 
-struct ProductsInFoodIntakeView: View {
+// MARK: ПРОДУКТЫ И РЕАКЦИИ
+// Список продуктов и реакций
+struct ProductsAndReactionsInFoodIntakeView: View {
+    
+    // Среды
+    @Environment(ProductViewModel.self) var product_vm
+    @Environment(ReactionViewModel.self) var reaction_vm
     
     let products: [ProductEntity]
     let foodIntake: FoodIntakeEntity
-    @Environment(ProductViewModel.self) var product_vm
-    @Environment(ReactionViewModel.self) var reaction_vm
     
     var body: some View {
         let products = products.sorted() {$0.name! < $1.name!}
@@ -71,6 +80,7 @@ struct ProductsInFoodIntakeView: View {
     }
 }
 
+// Дополнительый view для того, чтобы передать элемент базы данных.
 struct SubViewForPreview_ContentOfFoodIntake: View {
     @Environment(FoodIntakeViewModel.self) var foodIntake_vm
     var body: some View {

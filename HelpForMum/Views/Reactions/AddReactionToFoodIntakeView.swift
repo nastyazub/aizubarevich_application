@@ -5,9 +5,13 @@
 //  Created by Настя on 30.10.2024.
 //
 
+// Страница добавления реакций в приём пищи.
+
 import SwiftUI
 
 struct AddReactionToFoodIntakeView: View {
+    
+    // Среды
     @Environment(ReactionViewModel.self) var reaction_vm
     @Environment(\.dismiss) var dismiss
     
@@ -32,12 +36,12 @@ struct AddReactionToFoodIntakeView: View {
                     .padding()
                 
                 List {
-                    ForEach(reaction_vm.reactions) { reaction in
+                    ForEach(reaction_vm.reactions.sorted() {$0.name! < $1.name!}) { reaction in // Сортировка по алфавиту
                         if let name = reaction.name {
-                            if name.lowercased().contains(textFieldText.lowercased()) || textFieldText == "" {
+                            if name.lowercased().contains(textFieldText.lowercased()) || textFieldText == "" { // Проверка соответсвтвия значению в поиске
                                 Text(name)
                                     .onTapGesture {
-                                        prove(reaction: reaction)
+                                        prove(reaction: reaction) // Проверка, есть ли в приёме пищи продукт
                                     }
                                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                         Button("Удалить") {
@@ -72,10 +76,11 @@ struct AddReactionToFoodIntakeView: View {
     }
 }
 
+// Кнопка добавления реакции в базу данных
 struct AddReactionButton: View {
     var body: some View {
         NavigationLink {
-            AddReactionToBaseView()
+            AddReactionToBaseView() // Страница добавления реакции в базу данных
         } label: {
             Text("+ Добавить")
                 .font(.title)
@@ -90,6 +95,7 @@ struct AddReactionButton: View {
     }
 }
 
+// Дополнительный view, для того чтобы ввести значение из базы данных
 struct SubViewForPreview_addReactionToFoodIntake: View {
     
     @Environment(FoodIntakeViewModel.self) var vm

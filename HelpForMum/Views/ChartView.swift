@@ -5,9 +5,13 @@
 //  Created by Настя on 05.11.2024.
 //
 
+// Страница отображения графиков роста и веса.
+
 import SwiftUI
 import Charts
 
+// MARK: ГЛАВНАЯ
+// Сама страница
 struct ChartView: View {
     
     @State var showHeight: Bool = true
@@ -20,18 +24,18 @@ struct ChartView: View {
                 if showHeight {
                     Text("Рост")
                         .padding(30)
-                    ChartHeight()
+                    ChartHeight() // График роста
                 }
                 if showWeight {
                     Text("Вес")
                         .padding(30)
-                    ChartWeight()
+                    ChartWeight() // График веса
                 }
             }
             .navigationTitle("Графики роста и веса")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
+                    Menu { // Здесь выбирается режим. По умолчанию - "Рост и вес"
                         Button("Рост") {
                             showHeight = true
                             showWeight = false
@@ -56,12 +60,17 @@ struct ChartView: View {
     }
 }
 
+// MARK: ГРАФИК РОСТА
+
 struct ChartHeight: View {
     
+    // Среда
     @Environment(HeightViewModel.self) var height_vm
+    
     let calendar = Calendar.current
+    
     @State var heights: [HeightEntity] = []
-    @State var chartSelection: Date?
+    @State var chartSelection: Date? // Если выбирается точка на графике, то дата - chartSelection
     
     var body: some View {
         if height_vm.heights.isEmpty {
@@ -70,7 +79,7 @@ struct ChartHeight: View {
                 .frame(height: 300)
         } else {
             Chart(heights.sorted() {$0.date! < $1.date!}) { height in
-                LineMark(
+                LineMark( // Линейная диаграмма
                     x: .value("Day", height.date!, unit: .day),
                     y: .value("Height", height.height)
                 )
@@ -79,9 +88,9 @@ struct ChartHeight: View {
                 
                 if let chartSelection {
                     let chartSelectionString = calendar.dateComponents([.day, .month, .year], from: chartSelection)
-                    let chartSelected = calendar.date(from: chartSelectionString)
+                    let chartSelectionSort = calendar.date(from: chartSelectionString) // Для того, чтобы по charSelection можно было найти рост
                     
-                    if height.date == chartSelected {
+                    if height.date == chartSelectionSort {
                         RuleMark(x: .value("Day", chartSelection, unit: .day))
                             .foregroundStyle(Color.gray.opacity(0.5))
                             .annotation(
@@ -109,13 +118,17 @@ struct ChartHeight: View {
     }
 }
 
+// MARK: ГРАФИК ВЕСА
 
 struct ChartWeight: View {
     
+    // Среда
     @Environment(WeightViewModel.self) var weight_vm
+    
     let calendar = Calendar.current
+    
     @State var weights: [WeightEntity] = []
-    @State var chartSelection: Date?
+    @State var chartSelection: Date? // Если выбирается точка на графике, то дата - chartSelection
     
     var body: some View {
         if weight_vm.weights.isEmpty {
@@ -124,7 +137,7 @@ struct ChartWeight: View {
                 .frame(height: 300)
         } else {
             Chart(weights.sorted() {$0.date! < $1.date!}) { weight in
-                LineMark(
+                LineMark( // Линейная диаграмма
                     x: .value("Day", weight.date!, unit: .day),
                     y: .value("Weight", weight.weight)
                 )
@@ -133,9 +146,9 @@ struct ChartWeight: View {
                 
                 if let chartSelection {
                     let chartSelectionString = calendar.dateComponents([.day, .month, .year], from: chartSelection)
-                    let chartSelected = calendar.date(from: chartSelectionString)
+                    let chartSelectionSort = calendar.date(from: chartSelectionString) // Для того, чтобы по charSelection можно было найти вес
                     
-                    if weight.date == chartSelected {
+                    if weight.date == chartSelectionSort {
                         RuleMark(x: .value("Day", chartSelection, unit: .day))
                             .foregroundStyle(Color.gray.opacity(0.5))
                             .annotation(

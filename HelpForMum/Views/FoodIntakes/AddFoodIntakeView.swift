@@ -5,10 +5,13 @@
 //  Created by Настя on 26.10.2024.
 //
 
+// Страница выбора типа приёма пищи и одновременно добавление приёма пищи.
+
 import SwiftUI
 
 struct AddFoodIntakeView: View {
     
+    // Среды
     @Environment(\.dismiss) var dismiss
     @Environment(TimeOfFoodViewModel.self) var time_vm
     @Environment(FoodIntakeViewModel.self) var foodIntake_vm

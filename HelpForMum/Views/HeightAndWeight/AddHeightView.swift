@@ -5,15 +5,24 @@
 //  Created by Настя on 03.11.2024.
 //
 
+// Страница добавления, удаления, изменения роста.
+
 import SwiftUI
 
 struct AddHeightView: View {
     
-    @State var textFieldText: String = ""
+    // Среды
     @Environment(HeightViewModel.self) var height_vm
     @Environment(\.dismiss) var dismiss
     
+    @State var textFieldText: String = ""
+    
+    // Индикаторы появления сообщений о неправильном вводе.
+    @State var showAlertNonMinus: Bool = false
+    @State var showAlertNonEmpty: Bool = false
+    
     let date: Date
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -26,16 +35,31 @@ struct AddHeightView: View {
                     Text("см")
                 }
                 
-                
                 Button("Готово") {
                     if textFieldText.count > 0 {
                         if let height = Int(textFieldText) {
                             if height >= 0 {
                                 height_vm.addHeight(height: height, date: date)
                                 dismiss()
+                            } else {
+                                showAlertNonMinus = true
                             }
+                        } else {
+                            showAlertNonEmpty = true
                         }
                         
+                    } else {
+                        var flag = true
+                        for height in height_vm.heights {
+                            if height.date == date {
+                                flag = false
+                                height_vm.delete(height: height)
+                                dismiss()
+                            }
+                        }
+                        if flag {
+                            showAlertNonEmpty = true
+                        }
                     }
                     
                 }
@@ -46,7 +70,17 @@ struct AddHeightView: View {
                 .background(Color.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
+                .alert("Неверный ввод", isPresented: $showAlertNonMinus) {
+                    Button("Ок", role: .cancel) { }
+                } message: {
+                    Text("Нельзя ввести отрицательное значение. Введите рост в сантиметрах")
+                }
                 
+                .alert("Неверный ввод", isPresented: $showAlertNonEmpty) {
+                    Button("Ок", role: .cancel) { }
+                } message: {
+                    Text("Нельзя оставить поле пустым. Принимаются только целочисленные значения. Введите рост в сантиметрах")
+                }
                 
                 Spacer()
             }

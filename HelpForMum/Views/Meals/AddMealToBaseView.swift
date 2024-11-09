@@ -5,19 +5,26 @@
 //  Created by Настя on 06.11.2024.
 //
 
+// Страница добавления блюда в базу данных
+
 import SwiftUI
 
 struct AddMealToBaseView: View {
+    // MARK: СВОЙСТВА
     
+    // Среды
     @Environment(MealViewModel.self) var meal_vm
     @Environment(\.dismiss) var dismiss
+    
     @State var textFieldText: String = ""
     
-    @State var next: Bool = false
+    @State var next: Bool = false // ИНдикатор перехода на следующий шаг
+    
+    // MARK: ТЕЛО
     
     var body: some View {
         NavigationStack {
-            VStack() {
+            VStack {
                 if !next {
                     TextField("Название блюда...", text: $textFieldText)
                         .font(.title2)

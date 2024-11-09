@@ -5,22 +5,28 @@
 //  Created by Настя on 12.08.2024.
 //
 
+// Страница Home. Здесь ведётся календарь.
+
 import SwiftUI
 
 struct Home: View {
     
-    //Календарь
-    let calendar = Calendar.current
+    // MARK: СВОЙСТВА
     
-    @State var showCalendar: Bool = false
-    let startingDate: Date = Calendar.current.date(from: DateComponents(year: 2023)) ?? Date()
-    let endingDate: Date = Date()
-    
+    // Среды
     @Environment(FoodIntakeViewModel.self) var foodIntake_vm
     @Environment(HeightViewModel.self) var height_vm
     
+    //Календарь
+    let calendar = Calendar.current
+    let startingDate: Date = Calendar.current.date(from: DateComponents(year: 2023)) ?? Date()
+    let endingDate: Date = Date()
+    
+    @State var showCalendar: Bool = false
     @State var dateComponents = DateComponents()
     @State var selectedDate = Date()
+    
+    // MARK: ТЕЛО
     
     var body: some View {
         NavigationStack {
@@ -28,11 +34,11 @@ struct Home: View {
                     VStack {
                         Text(selectedDate.formatted(date: .abbreviated, time: .omitted))
                         
-                        HeightAndWeightView(selectedDate: selectedDate)
+                        HeightAndWeightView(selectedDate: selectedDate) // Показывабтся рост и вес
                         
                         ForEach(foodIntake_vm.foodIntakes) { foodIntake in
                             if foodIntake.date == selectedDate {
-                                BreakfastLunchPoldnikDinnerHelp(foodIntake: foodIntake)
+                                BreakfastLunchPoldnikDinnerHelp(foodIntake: foodIntake) // Дизайн приёма пищи
                             }
                         }
                         
@@ -69,7 +75,7 @@ struct Home: View {
             }
         }
         .onAppear {
-            let simpleDate = calendar.dateComponents([.day, .month, .year], from: selectedDate)
+            let simpleDate = calendar.dateComponents([.day, .month, .year], from: selectedDate) // Сделано, чтобы дата была без привязке к времени.
             selectedDate = calendar.date(from: simpleDate)!
         }
     }
