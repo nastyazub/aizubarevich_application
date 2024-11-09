@@ -65,7 +65,11 @@ struct ProductsInMealView: View {
                             Text(product.name ?? "")
                         }
                         .onDelete(perform: { indexSet in
-                            product_vm.deleteFromMeal(at: indexSet, meal: meal)
+                            for offset in indexSet {
+                                let productsSorted = product_vm.sortProductsForMeal(meal: meal)
+                                let product = productsSorted[offset]
+                                product_vm.deleteFromMeal(product: product, meal: meal)
+                            }
                         })
                     }
                     .listStyle(.plain)

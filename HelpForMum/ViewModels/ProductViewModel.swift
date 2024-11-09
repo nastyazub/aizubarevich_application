@@ -13,9 +13,11 @@
  3. Добавление продукта в определённый приём пищи.
  4. Добавление продукта в определённое блюдо.
  5. Удаление продукта из базы данных.
- 6. Удаление продукта из приёма пищи.
- 7. Удаление продукта из блюда.
- 8. Сохранение изменений продуктов в базу данных.
+ 6. Сортировка списка продуктов, входящих в определённый приём пищи.
+ 7. Удаление продукта из приёма пищи.
+ 8. Сортировка списка продуктов, входящих в определённое блюдо.
+ 9. Удаление продукта из блюда.
+ 10. Сохранение изменений продуктов в базу данных.
  */
 
 import Foundation
@@ -114,12 +116,10 @@ import CoreData
         save()
     }
     
-    /// Удаление продукта из приёма пищи.
-    /// - Warning: offses - множество с одним значением, так для удаления продукта пользователю нужно свайпнуть.
-    /// - Parameters:
-    ///   - offsets: Множество целочисленных значений, равное положению с списке продуктов, которые нужно удалить.
-    ///   - foodIntake: Элемент базы данных (приём пищи), откуда нужно удалить продукт.
-    func deleteFromFoodIntake(at offsets: IndexSet, foodIntake: FoodIntakeEntity) {
+    /// Сортировка списка продуктов, входящих в определённый приём пищи.
+    /// - Parameter foodIntake: Элемент базы данных (блюдо), продукты которого надо отсортировать.
+    /// - Returns: Отсортированный список продуктов приёма пищи.
+    func sortProductsForFoodIntake(foodIntake: FoodIntakeEntity) -> [ProductEntity] {
         let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
         let filter = NSPredicate(format: "foodIntakes CONTAINS %@", foodIntake)
         let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -128,22 +128,38 @@ import CoreData
         
         do {
             products = try manager.context.fetch(request)
+            return products
+        } catch let error {
+            print("Ошибка сортировки списка продуктов. \(error)")
+        }
+        return []
+    }
+    
+    /// Удаление продукта из приёма пищи.
+    /// - Parameters:
+    ///   - product: Элемент базы данных (продукт), который нужно удалить из приёма пищи.
+    ///   - foodIntake: Элемент базы данных (приём пищи), откуда нужно удалить продукт.
+    func deleteFromFoodIntake(product: ProductEntity, foodIntake: FoodIntakeEntity) {
+        let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
+        let filter = NSPredicate(format: "foodIntakes CONTAINS %@", foodIntake)
+        request.predicate = filter
+        
+        do {
+            products = try manager.context.fetch(request)
         } catch let error {
             print("Ошибка удаления продукта из приёма пищи. \(error)")
         }
-        for offset in offsets {
-            let product = products[offset]
+        if products.contains(product) {
             foodIntake.removeFromProducts(product)
             save()
             print("Продукт удалён из приёма пищи. \(String(describing: product.name))")
         }
     }
     
-    /// Удаление продукта из блюда.
-    /// - Parameters:
-    ///   - offsets: Множество целочисленных значений, равное положению с списке продуктов, которые нужно удалить.
-    ///   - meal: Элемент базы данных (блюдо), откуда нужно удалить продукт.
-    func deleteFromMeal(at offsets: IndexSet, meal: MealEntity) {
+    /// Сортировка списка продуктов, входящих в определённое блюдо.
+    /// - Parameter meal: Элемент базы данных (блюдо), продукты которого надо отсортировать.
+    /// - Returns: Отсортированный список продуктов блюда.
+    func sortProductsForMeal(meal: MealEntity) -> [ProductEntity] {
         let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
         let filter = NSPredicate(format: "meals CONTAINS %@", meal)
         let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -152,11 +168,28 @@ import CoreData
         
         do {
             products = try manager.context.fetch(request)
+            return products
+        } catch let error {
+            print("Ошибка сортировки списка продуктов. \(error)")
+        }
+        return []
+    }
+    
+    /// Удаление продукта из блюда.
+    /// - Parameters:
+    ///   - product: Элемент базы данных (продукт), который нужно удалить из блюда.
+    ///   - meal: Элемент базы данных (блюдо), откуда нужно удалить продукт.
+    func deleteFromMeal(product: ProductEntity, meal: MealEntity) {
+        let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
+        let filter = NSPredicate(format: "meals CONTAINS %@", meal)
+        request.predicate = filter
+        
+        do {
+            products = try manager.context.fetch(request)
         } catch let error {
             print("Ошибка удаления продукта из блюда. \(error)")
         }
-        for offset in offsets {
-            let product = products[offset]
+        if products.contains(product) {
             meal.removeFromProducts(product)
             save()
             print("Продукт удалён из блюда. \(String(describing: product.name))")
@@ -168,14 +201,5 @@ import CoreData
         products.removeAll()
         self.manager.save()
         self.getProducts()
-    }
-    
-    //MARK: УДАЛИТЬ
-    
-    func deleteAll() {
-        for el in products {
-            manager.context.delete(el)
-            save()
-        }
     }
 }

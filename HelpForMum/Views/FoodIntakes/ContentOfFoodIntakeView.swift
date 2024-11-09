@@ -55,7 +55,11 @@ struct ProductsAndReactionsInFoodIntakeView: View {
                         Text(product.name!)
                     }
                     .onDelete(perform: { indexSet in
-                        product_vm.deleteFromFoodIntake(at: indexSet, foodIntake: foodIntake)
+                        for offset in indexSet {
+                            let productsSorted = product_vm.sortProductsForFoodIntake(foodIntake: foodIntake)
+                            let product = productsSorted[offset]
+                            product_vm.deleteFromFoodIntake(product: product, foodIntake: foodIntake)
+                        }
                     })
                 } header: {
                     Text("Продукты")
@@ -68,7 +72,11 @@ struct ProductsAndReactionsInFoodIntakeView: View {
                             Text(reaction.name!)
                         }
                         .onDelete(perform: { indexSet in
-                            reaction_vm.deleteFromFoodIntake(at: indexSet, foodIntake: foodIntake)
+                            for offset in indexSet {
+                                let reactionsSorted = reaction_vm.sortReactionsForFoodIntake(foodIntake: foodIntake)
+                                let reaction = reactionsSorted[offset]
+                                reaction_vm.deleteFromFoodIntake(reaction: reaction, foodIntake: foodIntake)
+                            }
                         })
                     }
                 } header: {

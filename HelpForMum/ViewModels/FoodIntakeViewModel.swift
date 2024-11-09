@@ -79,12 +79,4 @@ import CoreData
         self.manager.save()
         self.getFoodIntakes()
     }
-    
-    // MARK: УДАЛИТЬ
-    func deleteAll() {
-        for el in foodIntakes {
-            manager.context.delete(el)
-            save()
-        }
-    }
 }

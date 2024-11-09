@@ -10,55 +10,42 @@ import XCTest
 
 class FoodIntakeViewModelTests: XCTestCase {
     
+    var vm: FoodIntakeViewModel?
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        vm = FoodIntakeViewModel()
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        vm = nil
     }
     
-//    func test_addFoodIntake_saves() throws{
-//        //Given
-//        let food_vm = FoodIntakeViewModel()
-//        let time_vm = TimeOfFoodViewModel()
-//        let date = Date()
-//        time_vm.addTimes()
-//        food_vm.deleteAll()
-//        let list = [
-//            "Завтрак", "Обед", "Полдник", "Ужин"
-//        ]
-//        
-//        let id = UUID().uuidString
-//        let name = list.randomElement()
-//        time_vm.getTimeForFoodIntake(title: name ?? "")
-//        
-//        let time =  time_vm.times[0]
-//        
-//        //When
-//        food_vm.addFoodIntake(id: id, time: time, date: date)
-//        
-//        //Then
-//        XCTAssertEqual(food_vm.foodIntakes.count, 1)
-//        XCTAssertEqual(food_vm.foodIntakes[0].id, id)
-//        XCTAssertEqual(food_vm.foodIntakes[0].type_of_time, time)
-//        XCTAssertEqual(time_vm.times[0].name, name)
-//        food_vm.delete(foodIntake: food_vm.foodIntakes[0])
-//        XCTAssertTrue(food_vm.foodIntakes.isEmpty)
-//        
-//    }
-    
-    func test_deleting() {
-        let vm = FoodIntakeViewModel()
-        vm.deleteAll()
-    }
-    
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func test_FoodIntakeViewModel_addFoodIntake() throws {
+        
+        //Given
+        guard let foodIntake_vm = vm else {
+            XCTFail()
+            return
         }
+        
+        let time_vm = TimeOfFoodViewModel()
+        time_vm.addTimes()
+        
+        let foodIntakeCount = vm!.foodIntakes.count
+        
+        // When
+        foodIntake_vm.addFoodIntake(id: UUID().uuidString, time: time_vm.times.randomElement()!, date: Date())
+        let foodIntake = vm!.foodIntakes[0]
+        
+        //Then
+        XCTAssertEqual(foodIntake, vm!.foodIntakes[0])
+        XCTAssertEqual(vm!.foodIntakes.count, foodIntakeCount + 1)
+        
+        vm?.delete(foodIntake: foodIntake)
+        XCTAssertFalse(vm!.foodIntakes.contains(foodIntake))
+        
     }
-
+    
+    
 }
 

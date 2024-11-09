@@ -10,70 +10,174 @@ import XCTest
 
 class ProductViewModelTests: XCTestCase {
     
+    var vm: ProductViewModel?
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        vm = ProductViewModel()
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        vm = nil
     }
     
-//    func test_addProduct_saves() throws {
-//        //Given
-//        let vm = ProductViewModel()
-//        let name = "Food"
-//        let count = vm.products.count
-//        
-//        //When
-//        vm.addProduct(name: name)
-//        
-//        //Then
-//        XCTAssertEqual(vm.products.count, count + 1)
-//        vm.searchProductName(name: name)
-//        XCTAssertEqual(vm.products[0].name, name)
-//        vm.deleteFromBase(product: vm.products[0])
-//    }
-    
-//    func test_addProductToTime() throws {
-//        //Given
-//        let food_vm = FoodIntakeViewModel()
-//        let time_vm = TimeOfFoodViewModel()
-//        let product_vm = ProductViewModel()
-//        
-//        let id = UUID().uuidString
-//        
-//        let list = [
-//            "Завтрак", "Обед", "Полдник", "Ужин"
-//        ]
-//        
-//        let nameOfFoodIntake = list.randomElement()
-//        
-//        time_vm.getTimeForFoodIntake(title: nameOfFoodIntake ?? "")
-//        let time =  time_vm.times[0]
-//        
-//        let date = Date()
-//        
-//        food_vm.addFoodIntake(id: id, time: time, date: date)
-//        food_vm.searchFoodIntakeId(id: id)
-//        
-//        let nameOfProduct = "Food"
-//        product_vm.addProduct(name: nameOfProduct)
-//        
-//        //When
-//        product_vm.addProductToTime(product: product_vm.products[0], foodIntake: food_vm.foodIntakes[0])
-//        let products = food_vm.foodIntakes[0].products?.allObjects as! [ProductEntity]
-//        
-//        //Then
-//        XCTAssertEqual(products.count, 1)
-//        XCTAssertEqual(products[0].name, nameOfProduct)
-//        food_vm.delete(foodIntake: food_vm.foodIntakes[0])
-//    }
-    
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func test_ProductViewModel_AddProduct() {
+        
+        //Given
+        guard let product_vm = vm else {
+            XCTFail()
+            return
         }
+        
+        let count = product_vm.products.count
+        
+        //When
+        let name = UUID().uuidString
+        _ = product_vm.addProduct(name: name)
+        let product = product_vm.products[0]
+        
+        //Then
+        XCTAssertEqual(product_vm.products.count, count + 1)
+        XCTAssertEqual(product_vm.products[0].name, name)
+        product_vm.deleteFromBase(product: product)
+        XCTAssertFalse(product_vm.products.contains(product))
     }
-
+    
+    func test_ProductViewModel_AddProductToFoodIntake() {
+        //Given
+        guard let product_vm = vm else {
+            XCTFail()
+            return
+        }
+        
+        let time_vm = TimeOfFoodViewModel()
+        time_vm.addTimes()
+        
+        let foodIntake_vm = FoodIntakeViewModel()
+        let date = Date()
+        foodIntake_vm.addFoodIntake(id: UUID().uuidString, time: time_vm.times.randomElement()!, date: date)
+        let foodIntake = foodIntake_vm.foodIntakes[0]
+        
+        let name = UUID().uuidString
+        _ = product_vm.addProduct(name: name)
+        let product = product_vm.products[0]
+        
+        //When
+        product_vm.addProductToFoodIntake(product: product, foodIntake: foodIntake)
+        
+        //Then
+        XCTAssertTrue(foodIntake.products!.contains(product))
+        product_vm.deleteFromBase(product: product)
+        foodIntake_vm.delete(foodIntake: foodIntake)
+        XCTAssertFalse(product_vm.products.contains(product))
+        XCTAssertFalse(foodIntake_vm.foodIntakes.contains(foodIntake))
+    }
+    
+    func text_ProductViewModel_AddProductToMeal() {
+        //Given
+        guard let product_vm = vm else {
+            XCTFail()
+            return
+        }
+        
+        let meal_vm = MealViewModel()
+        meal_vm.addMeal(name: UUID().uuidString)
+        let meal = meal_vm.meals[0]
+        
+        let name = UUID().uuidString
+        _ = product_vm.addProduct(name: name)
+        let product = product_vm.products[0]
+        
+        //When
+        product_vm.addProductToMeal(product: product, meal: meal)
+        
+        //Then
+        XCTAssertTrue(meal.products!.contains(product))
+        product_vm.deleteFromBase(product: product)
+        meal_vm.deleteFromBase(meal: meal)
+        XCTAssertFalse(product_vm.products.contains(product))
+        XCTAssertFalse(meal_vm.meals.contains(meal))
+    }
+    
+//    func test_ProductViewModel_deleteFromFoodIntake() {
+//        
+//        //Given
+//        guard let product_vm = vm else {
+//            XCTFail()
+//            return
+//        }
+//        
+//        let time_vm = TimeOfFoodViewModel()
+//        time_vm.addTimes()
+//        
+//        let foodIntake_vm = FoodIntakeViewModel()
+//        let date = Date()
+//        foodIntake_vm.addFoodIntake(id: UUID().uuidString, time: time_vm.times.randomElement()!, date: date)
+//        let foodIntake = foodIntake_vm.foodIntakes[0]
+//        
+//        let name = UUID().uuidString
+//        _ = product_vm.addProduct(name: name)
+//        let product = product_vm.products[0]
+//        
+//        product_vm.addProductToFoodIntake(product: product, foodIntake: foodIntake)
+//        
+//        // When
+//        product_vm.deleteFromFoodIntake(at: [0], foodIntake: foodIntake)
+//        
+//        //Then
+//        XCTAssertTrue(product_vm.products.contains(product))
+//        XCTAssertFalse(foodIntake.products!.contains(product))
+//        
+//        product_vm.deleteFromBase(product: product)
+//        foodIntake_vm.delete(foodIntake: foodIntake)
+//        
+//        XCTAssertFalse(product_vm.products.contains(product))
+//        XCTAssertFalse(foodIntake_vm.foodIntakes.contains(foodIntake))
+//    }
+    
+//    func test_ProductViewModel_deleteFromFoodIntake_TwoProducts() {
+//        
+//        //Given
+//        guard let product_vm = vm else {
+//            XCTFail()
+//            return
+//        }
+//        
+//        let time_vm = TimeOfFoodViewModel()
+//        time_vm.addTimes()
+//        
+//        let foodIntake_vm = FoodIntakeViewModel()
+//        let date = Date()
+//        foodIntake_vm.addFoodIntake(id: UUID().uuidString, time: time_vm.times.randomElement()!, date: date)
+//        let foodIntake = foodIntake_vm.foodIntakes[0]
+//        
+//        let name1 = UUID().uuidString
+//        _ = product_vm.addProduct(name: name1)
+//        let product1 = product_vm.products[0]
+//        
+//        let name2 = UUID().uuidString
+//        _ = product_vm.addProduct(name: name2)
+//        let product2 = product_vm.products[0]
+//        
+//        product_vm.addProductToFoodIntake(product: product1, foodIntake: foodIntake)
+//        product_vm.addProductToFoodIntake(product: product2, foodIntake: foodIntake)
+//        let indexSet0: IndexSet = [0]
+//        
+//        
+//        // When
+//        product_vm.deleteFromFoodIntake(at: indexSet0, foodIntake: foodIntake)
+//        
+//        //Then
+//        XCTAssertTrue(product_vm.products.contains(product1))
+//        XCTAssertTrue(product_vm.products.contains(product2))
+//        XCTAssertFalse(foodIntake.products!.contains(product1))
+//        XCTAssertFalse(foodIntake.products!.contains(product2))
+//        
+//        product_vm.deleteFromBase(product: product1)
+//        product_vm.deleteFromBase(product: product2)
+//        foodIntake_vm.delete(foodIntake: foodIntake)
+//        
+//        XCTAssertFalse(product_vm.products.contains(product1))
+//        XCTAssertFalse(product_vm.products.contains(product2))
+//        XCTAssertFalse(foodIntake_vm.foodIntakes.contains(foodIntake))
+//    }
 }

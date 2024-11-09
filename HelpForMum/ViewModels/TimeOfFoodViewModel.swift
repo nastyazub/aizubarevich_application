@@ -62,12 +62,4 @@ import CoreData
         self.manager.save()
         self.getTimes()
     }
-    
-    // MARK: УДАЛИТЬ
-    func deleteAll() {
-        for el in times {
-            manager.context.delete(el)
-            save()
-        }
-    }
 }

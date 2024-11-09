@@ -9,27 +9,38 @@ import XCTest
 @testable import HelpForMum
 
 class TimeOfFoodViewModelTests: XCTestCase {
+    
+    var vm: TimeOfFoodViewModel?
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        vm = TimeOfFoodViewModel()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        vm = nil
     }
     
     func test_TimeOfFoodViewModel_addTimes() throws {
         //Given
-        let vm = TimeOfFoodViewModel()
+        guard let vm = vm else {
+            XCTFail()
+            return
+        }
+        
         //When
         vm.addTimes()
+        
         //Then
+        XCTAssertFalse(vm.times.isEmpty)
         XCTAssertEqual(vm.times.count, 4)
     }
     
     func test_TimeOfFoodViewModel_addTimes_IfExist() {
         //Given
-        let vm = TimeOfFoodViewModel()
+        guard let vm = vm else {
+            XCTFail()
+            return
+        }
         vm.addTimes()
         
         //When
@@ -37,14 +48,5 @@ class TimeOfFoodViewModelTests: XCTestCase {
         
         //Then
         XCTAssertEqual(vm.times.count, 4)
-        vm.deleteAll()
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
