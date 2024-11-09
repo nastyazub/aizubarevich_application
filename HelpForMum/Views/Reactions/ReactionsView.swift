@@ -31,7 +31,7 @@ struct ReactionsView: View {
             } else {
                 ScrollView {
                     VStack {
-                        ForEach(reactions) { reaction in
+                        ForEach(reactions.sorted() {$0.foodIntakes!.count > $1.foodIntakes!.count}) { reaction in
                             let countAll = analytics.countAll(reaction: reaction) // Кол-во появлений реакции
                             if countAll != 0 {
                                 let countProduct = analytics.countForProduct(reaction: reaction) // Отсортированный словарь продуктов и их кол-ва появления вместе с реакцией
