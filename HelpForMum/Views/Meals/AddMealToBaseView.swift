@@ -33,18 +33,20 @@ struct AddMealToBaseView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .padding()
                     
-                    Button("Готово") {
+                    
+                    Button(action: {
                         meal_vm.addMeal(name: textFieldText)
                         next = true
-                    }
-                    .font(.title2)
-                    .foregroundStyle(Color.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(.horizontal)
-                    
+                    }, label: {
+                        Text("Готово")
+                            .font(.title2)
+                            .foregroundStyle(Color.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding(.horizontal)
+                    })
                 }
                 if next {
                     Text(textFieldText)
@@ -59,15 +61,14 @@ struct AddMealToBaseView: View {
                         }
                     } label: {
                         Text("Далее ->")
+                            .font(.title2)
+                            .foregroundStyle(Color.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding()
                     }
-                    .font(.title2)
-                    .foregroundStyle(Color.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding()
-                    
                 }
             }
             .navigationTitle("Добавление блюда")

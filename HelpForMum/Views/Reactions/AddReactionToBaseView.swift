@@ -12,10 +12,12 @@ import SwiftUI
 struct AddReactionToBaseView: View {
     
     // Среды
-    @Environment(ReactionViewModel.self) var vm
+    @Environment(ReactionViewModel.self) var reaction_vm
     @Environment(\.dismiss) var dismiss
     
     @State var textFieldText: String = ""
+    
+    @State var showAlert: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -27,19 +29,41 @@ struct AddReactionToBaseView: View {
                     .background(Color.secondary.opacity(0.2))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 
-                
-                Button("Готово") {
+                Button(action: {
                     if textFieldText.count > 1 {
-                        vm.addReaction(name: textFieldText)
+                        reaction_vm.addReaction(name: textFieldText)
                         dismiss()
+                    } else {
+                        showAlert = true
                     }
+                }, label: {
+                    Text("Готово")
+                        .font(.title2)
+                        .foregroundStyle(Color.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                })
+                .alert("Неправильный ввод", isPresented: $showAlert) {
+                    Button("Ок", role: .cancel) { }
+                } message: {
+                    Text("Нельзя оставить поле пустым. Введите название продукта")
                 }
-                .font(.title2)
-                .foregroundStyle(Color.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                
+//                Button("Готово") {
+//                    if textFieldText.count > 1 {
+//                        reaction_vm.addReaction(name: textFieldText)
+//                        dismiss()
+//                    }
+//                }
+//                .font(.title2)
+//                .foregroundStyle(Color.white)
+//                .padding()
+//                .frame(maxWidth: .infinity)
+//                .background(Color.blue)
+//                .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 
                 Spacer()
