@@ -8,6 +8,7 @@
 // Страница просмотра блюд. Список блюд.
 
 import SwiftUI
+import DeviceCheck
 
 struct MealsView: View {
     
@@ -54,9 +55,9 @@ struct MealsView: View {
             }, label: {
                 AddMealButton() // Кнопка добавления блюда
             })
-            .popover(isPresented: $showAddingView, content: {
+            .sheet(isPresented: $showAddingView, content: {
                 AddMealToBaseView()
-                    .presentationCompactAdaptation(.sheet)
+                    .presentationDetents([.large])
             })
         }
     }

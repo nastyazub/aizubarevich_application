@@ -65,9 +65,9 @@ struct AddMealToFoodIntakeView: View {
             }, label: {
                 AddMealButton()
             })
-            .popover(isPresented: $showAddingView, content: {
+            .sheet(isPresented: $showAddingView, content: {
                 AddMealToBaseView()
-                    .presentationCompactAdaptation(.sheet)
+                    .presentationDetents([.large])
             })
             
             .navigationTitle(foodIntake.type_of_time?.name ?? "")
