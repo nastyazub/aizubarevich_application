@@ -42,6 +42,7 @@
 		4DCB71122CE1022600FCAB88 /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71112CE1022600FCAB88 /* AnalyticsTests.swift */; };
 		4DCB71142CE10AFA00FCAB88 /* HeightViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71132CE10AFA00FCAB88 /* HeightViewModelTests.swift */; };
 		4DCB71162CE10D8D00FCAB88 /* WeightViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71152CE10D8D00FCAB88 /* WeightViewModelTests.swift */; };
+		4DCB711A2CE1283C00FCAB88 /* HelpAndTipsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71192CE1283C00FCAB88 /* HelpAndTipsScreenView.swift */; };
 		4DEB6F002CD411BE0076D658 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */; };
 		4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */; };
 		4DEB6F062CD65BD20076D658 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F052CD65BD20076D658 /* ListView.swift */; };
@@ -100,6 +101,7 @@
 		4DCB71112CE1022600FCAB88 /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
 		4DCB71132CE10AFA00FCAB88 /* HeightViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightViewModelTests.swift; sourceTree = "<group>"; };
 		4DCB71152CE10D8D00FCAB88 /* WeightViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightViewModelTests.swift; sourceTree = "<group>"; };
+		4DCB71192CE1283C00FCAB88 /* HelpAndTipsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndTipsScreenView.swift; sourceTree = "<group>"; };
 		4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsOfReactionsAndProductsViewModel.swift; sourceTree = "<group>"; };
 		4DEB6F052CD65BD20076D658 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				4DEB6F052CD65BD20076D658 /* ListView.swift */,
 				4DCB70ED2CD983CB00FCAB88 /* ChartView.swift */,
 				4DCB70EB2CD978DA00FCAB88 /* ContactWithDeveloperView.swift */,
+				4DCB71192CE1283C00FCAB88 /* HelpAndTipsScreenView.swift */,
 				4DCB71012CDD5C8C00FCAB88 /* Products */,
 				4DCB71062CDD5D0100FCAB88 /* Meals */,
 				4DCB71052CDD5CD700FCAB88 /* Reactions */,
@@ -397,6 +400,7 @@
 				4DCB70F62CDB7EEE00FCAB88 /* AddMealToFoodIntakeView.swift in Sources */,
 				4DCB710A2CDFCF0F00FCAB88 /* EditProductView.swift in Sources */,
 				4D4ABB3C2CA05DA700E576C6 /* ProductViewModel.swift in Sources */,
+				4DCB711A2CE1283C00FCAB88 /* HelpAndTipsScreenView.swift in Sources */,
 				4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */,
 				4D4ABB232C6A3DF900E576C6 /* Home.swift in Sources */,
 				4DCB70F42CDB776F00FCAB88 /* MealsView.swift in Sources */,

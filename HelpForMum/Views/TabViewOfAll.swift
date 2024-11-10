@@ -31,6 +31,10 @@ struct TabViewOfAll: View {
                 .tabItem {
                     Image(systemName: "mail.fill")
                 }
+            HelpAndTipsScreenView()
+                .tabItem {
+                    Image(systemName: "questionmark.circle.fill")
+                }
         }
     }
 }
