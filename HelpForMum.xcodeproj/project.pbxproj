@@ -11,8 +11,6 @@
 		4D4ABAFA2C63ECB700E576C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D4ABAF92C63ECB700E576C6 /* Assets.xcassets */; };
 		4D4ABAFD2C63ECB700E576C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D4ABAFC2C63ECB700E576C6 /* Preview Assets.xcassets */; };
 		4D4ABB072C63ECB800E576C6 /* TimeOfFoodViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB062C63ECB800E576C6 /* TimeOfFoodViewModelTests.swift */; };
-		4D4ABB112C63ECB800E576C6 /* HelpForMumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB102C63ECB800E576C6 /* HelpForMumUITests.swift */; };
-		4D4ABB132C63ECB800E576C6 /* HelpForMumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB122C63ECB800E576C6 /* HelpForMumUITestsLaunchTests.swift */; };
 		4D4ABB232C6A3DF900E576C6 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB222C6A3DF900E576C6 /* Home.swift */; };
 		4D4ABB252C6A3EB300E576C6 /* BreakfastLunchPoldnikDinnerHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB242C6A3EB300E576C6 /* BreakfastLunchPoldnikDinnerHelp.swift */; };
 		4D4ABB2B2C7CB4FC00E576C6 /* AddProductToBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4ABB2A2C7CB4FC00E576C6 /* AddProductToBaseView.swift */; };
@@ -40,6 +38,8 @@
 		4DCB710A2CDFCF0F00FCAB88 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71092CDFCF0F00FCAB88 /* EditProductView.swift */; };
 		4DCB710C2CDFD15F00FCAB88 /* EditReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB710B2CDFD15F00FCAB88 /* EditReactionView.swift */; };
 		4DCB710E2CE0342C00FCAB88 /* ReactionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB710D2CE0342C00FCAB88 /* ReactionViewModelTests.swift */; };
+		4DCB71102CE0F6F300FCAB88 /* MealViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB710F2CE0F6F300FCAB88 /* MealViewModelTests.swift */; };
+		4DCB71122CE1022600FCAB88 /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71112CE1022600FCAB88 /* AnalyticsTests.swift */; };
 		4DEB6F002CD411BE0076D658 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */; };
 		4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */; };
 		4DEB6F062CD65BD20076D658 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F052CD65BD20076D658 /* ListView.swift */; };
@@ -58,13 +58,6 @@
 			remoteGlobalIDString = 4D4ABAF12C63ECB600E576C6;
 			remoteInfo = HelpForMum;
 		};
-		4D4ABB0D2C63ECB800E576C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D4ABAEA2C63ECB600E576C6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4D4ABAF12C63ECB600E576C6;
-			remoteInfo = HelpForMum;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -74,9 +67,6 @@
 		4D4ABAFC2C63ECB700E576C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4D4ABB022C63ECB800E576C6 /* HelpForMumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelpForMumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D4ABB062C63ECB800E576C6 /* TimeOfFoodViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOfFoodViewModelTests.swift; sourceTree = "<group>"; };
-		4D4ABB0C2C63ECB800E576C6 /* HelpForMumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelpForMumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D4ABB102C63ECB800E576C6 /* HelpForMumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpForMumUITests.swift; sourceTree = "<group>"; };
-		4D4ABB122C63ECB800E576C6 /* HelpForMumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpForMumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4D4ABB222C6A3DF900E576C6 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		4D4ABB242C6A3EB300E576C6 /* BreakfastLunchPoldnikDinnerHelp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakfastLunchPoldnikDinnerHelp.swift; sourceTree = "<group>"; };
 		4D4ABB2A2C7CB4FC00E576C6 /* AddProductToBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductToBaseView.swift; sourceTree = "<group>"; };
@@ -104,6 +94,8 @@
 		4DCB71092CDFCF0F00FCAB88 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
 		4DCB710B2CDFD15F00FCAB88 /* EditReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReactionView.swift; sourceTree = "<group>"; };
 		4DCB710D2CE0342C00FCAB88 /* ReactionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModelTests.swift; sourceTree = "<group>"; };
+		4DCB710F2CE0F6F300FCAB88 /* MealViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModelTests.swift; sourceTree = "<group>"; };
+		4DCB71112CE1022600FCAB88 /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
 		4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsOfReactionsAndProductsViewModel.swift; sourceTree = "<group>"; };
 		4DEB6F052CD65BD20076D658 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -129,13 +121,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4D4ABB092C63ECB800E576C6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -144,7 +129,6 @@
 			children = (
 				4D4ABAF42C63ECB600E576C6 /* HelpForMum */,
 				4D4ABB052C63ECB800E576C6 /* HelpForMumTests */,
-				4D4ABB0F2C63ECB800E576C6 /* HelpForMumUITests */,
 				4D4ABAF32C63ECB600E576C6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -154,7 +138,6 @@
 			children = (
 				4D4ABAF22C63ECB600E576C6 /* HelpForMum.app */,
 				4D4ABB022C63ECB800E576C6 /* HelpForMumTests.xctest */,
-				4D4ABB0C2C63ECB800E576C6 /* HelpForMumUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,17 +170,10 @@
 				4D4ABB432CC3F61100E576C6 /* FoodIntakeViewModelTests.swift */,
 				4D4ABB452CC3FD5700E576C6 /* ProductViewModelTests.swift */,
 				4DCB710D2CE0342C00FCAB88 /* ReactionViewModelTests.swift */,
+				4DCB710F2CE0F6F300FCAB88 /* MealViewModelTests.swift */,
+				4DCB71112CE1022600FCAB88 /* AnalyticsTests.swift */,
 			);
 			path = HelpForMumTests;
-			sourceTree = "<group>";
-		};
-		4D4ABB0F2C63ECB800E576C6 /* HelpForMumUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4D4ABB102C63ECB800E576C6 /* HelpForMumUITests.swift */,
-				4D4ABB122C63ECB800E576C6 /* HelpForMumUITestsLaunchTests.swift */,
-			);
-			path = HelpForMumUITests;
 			sourceTree = "<group>";
 		};
 		4D4ABB1F2C6A3D8F00E576C6 /* Views */ = {
@@ -331,24 +307,6 @@
 			productReference = 4D4ABB022C63ECB800E576C6 /* HelpForMumTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4D4ABB0B2C63ECB800E576C6 /* HelpForMumUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4D4ABB1C2C63ECB800E576C6 /* Build configuration list for PBXNativeTarget "HelpForMumUITests" */;
-			buildPhases = (
-				4D4ABB082C63ECB800E576C6 /* Sources */,
-				4D4ABB092C63ECB800E576C6 /* Frameworks */,
-				4D4ABB0A2C63ECB800E576C6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4D4ABB0E2C63ECB800E576C6 /* PBXTargetDependency */,
-			);
-			name = HelpForMumUITests;
-			productName = HelpForMumUITests;
-			productReference = 4D4ABB0C2C63ECB800E576C6 /* HelpForMumUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -363,10 +321,6 @@
 						CreatedOnToolsVersion = 15.4;
 					};
 					4D4ABB012C63ECB800E576C6 = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 4D4ABAF12C63ECB600E576C6;
-					};
-					4D4ABB0B2C63ECB800E576C6 = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 4D4ABAF12C63ECB600E576C6;
 					};
@@ -388,7 +342,6 @@
 			targets = (
 				4D4ABAF12C63ECB600E576C6 /* HelpForMum */,
 				4D4ABB012C63ECB800E576C6 /* HelpForMumTests */,
-				4D4ABB0B2C63ECB800E576C6 /* HelpForMumUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -404,13 +357,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4D4ABB002C63ECB800E576C6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4D4ABB0A2C63ECB800E576C6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -465,18 +411,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D4ABB442CC3F61100E576C6 /* FoodIntakeViewModelTests.swift in Sources */,
+				4DCB71122CE1022600FCAB88 /* AnalyticsTests.swift in Sources */,
+				4DCB71102CE0F6F300FCAB88 /* MealViewModelTests.swift in Sources */,
 				4D4ABB462CC3FD5700E576C6 /* ProductViewModelTests.swift in Sources */,
 				4D4ABB072C63ECB800E576C6 /* TimeOfFoodViewModelTests.swift in Sources */,
 				4DCB710E2CE0342C00FCAB88 /* ReactionViewModelTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4D4ABB082C63ECB800E576C6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4D4ABB112C63ECB800E576C6 /* HelpForMumUITests.swift in Sources */,
-				4D4ABB132C63ECB800E576C6 /* HelpForMumUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,11 +426,6 @@
 			isa = PBXTargetDependency;
 			target = 4D4ABAF12C63ECB600E576C6 /* HelpForMum */;
 			targetProxy = 4D4ABB032C63ECB800E576C6 /* PBXContainerItemProxy */;
-		};
-		4D4ABB0E2C63ECB800E576C6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4D4ABAF12C63ECB600E576C6 /* HelpForMum */;
-			targetProxy = 4D4ABB0D2C63ECB800E576C6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -713,42 +647,6 @@
 			};
 			name = Release;
 		};
-		4D4ABB1D2C63ECB800E576C6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 24V82ZVXNX;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nastyaZub.HelpForMumUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = HelpForMum;
-			};
-			name = Debug;
-		};
-		4D4ABB1E2C63ECB800E576C6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 24V82ZVXNX;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nastyaZub.HelpForMumUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = HelpForMum;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -775,15 +673,6 @@
 			buildConfigurations = (
 				4D4ABB1A2C63ECB800E576C6 /* Debug */,
 				4D4ABB1B2C63ECB800E576C6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4D4ABB1C2C63ECB800E576C6 /* Build configuration list for PBXNativeTarget "HelpForMumUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4D4ABB1D2C63ECB800E576C6 /* Debug */,
-				4D4ABB1E2C63ECB800E576C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
