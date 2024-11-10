@@ -1,7 +1,4 @@
-# This workflow will build a Swift project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
-
-name: Swift
+name: tests
 
 on:
   push:
@@ -10,13 +7,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  run_tests:
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      run: swift build -v
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_15.4.app && /usr/bin/xcodebuild -version
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild test -sheme HelpForMum -project HelpForMum.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' | xcpretty && exit ${PIPESTATUS[0]}
