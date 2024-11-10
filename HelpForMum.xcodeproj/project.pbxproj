@@ -40,6 +40,8 @@
 		4DCB710E2CE0342C00FCAB88 /* ReactionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB710D2CE0342C00FCAB88 /* ReactionViewModelTests.swift */; };
 		4DCB71102CE0F6F300FCAB88 /* MealViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB710F2CE0F6F300FCAB88 /* MealViewModelTests.swift */; };
 		4DCB71122CE1022600FCAB88 /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71112CE1022600FCAB88 /* AnalyticsTests.swift */; };
+		4DCB71142CE10AFA00FCAB88 /* HeightViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71132CE10AFA00FCAB88 /* HeightViewModelTests.swift */; };
+		4DCB71162CE10D8D00FCAB88 /* WeightViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB71152CE10D8D00FCAB88 /* WeightViewModelTests.swift */; };
 		4DEB6F002CD411BE0076D658 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */; };
 		4DEB6F022CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */; };
 		4DEB6F062CD65BD20076D658 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB6F052CD65BD20076D658 /* ListView.swift */; };
@@ -96,6 +98,8 @@
 		4DCB710D2CE0342C00FCAB88 /* ReactionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModelTests.swift; sourceTree = "<group>"; };
 		4DCB710F2CE0F6F300FCAB88 /* MealViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModelTests.swift; sourceTree = "<group>"; };
 		4DCB71112CE1022600FCAB88 /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
+		4DCB71132CE10AFA00FCAB88 /* HeightViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightViewModelTests.swift; sourceTree = "<group>"; };
+		4DCB71152CE10D8D00FCAB88 /* WeightViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightViewModelTests.swift; sourceTree = "<group>"; };
 		4DEB6EFF2CD411BE0076D658 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		4DEB6F012CD413F20076D658 /* AnalyticsOfReactionsAndProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsOfReactionsAndProductsViewModel.swift; sourceTree = "<group>"; };
 		4DEB6F052CD65BD20076D658 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -172,6 +176,8 @@
 				4DCB710D2CE0342C00FCAB88 /* ReactionViewModelTests.swift */,
 				4DCB710F2CE0F6F300FCAB88 /* MealViewModelTests.swift */,
 				4DCB71112CE1022600FCAB88 /* AnalyticsTests.swift */,
+				4DCB71132CE10AFA00FCAB88 /* HeightViewModelTests.swift */,
+				4DCB71152CE10D8D00FCAB88 /* WeightViewModelTests.swift */,
 			);
 			path = HelpForMumTests;
 			sourceTree = "<group>";
@@ -412,7 +418,9 @@
 			files = (
 				4D4ABB442CC3F61100E576C6 /* FoodIntakeViewModelTests.swift in Sources */,
 				4DCB71122CE1022600FCAB88 /* AnalyticsTests.swift in Sources */,
+				4DCB71142CE10AFA00FCAB88 /* HeightViewModelTests.swift in Sources */,
 				4DCB71102CE0F6F300FCAB88 /* MealViewModelTests.swift in Sources */,
+				4DCB71162CE10D8D00FCAB88 /* WeightViewModelTests.swift in Sources */,
 				4D4ABB462CC3FD5700E576C6 /* ProductViewModelTests.swift in Sources */,
 				4D4ABB072C63ECB800E576C6 /* TimeOfFoodViewModelTests.swift in Sources */,
 				4DCB710E2CE0342C00FCAB88 /* ReactionViewModelTests.swift in Sources */,
