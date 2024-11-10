@@ -42,6 +42,7 @@ class FoodIntakeViewModelTests: XCTestCase {
         XCTAssertEqual(vm!.foodIntakes.count, foodIntakeCount + 1)
         
         vm?.delete(foodIntake: foodIntake)
+        
         XCTAssertFalse(vm!.foodIntakes.contains(foodIntake))
         
     }
