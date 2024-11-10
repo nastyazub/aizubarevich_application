@@ -35,7 +35,7 @@ struct AddHeightView: View {
                     Text("см")
                 }
                 
-                Button("Готово") {
+                Button(action: {
                     if textFieldText.count > 0 {
                         if let height = Int(textFieldText) {
                             if height >= 0 {
@@ -62,13 +62,15 @@ struct AddHeightView: View {
                         }
                     }
                     
-                }
-                .font(.title2)
-                .foregroundStyle(Color.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                }, label: {
+                    Text("Готово")
+                        .font(.title2)
+                        .foregroundStyle(Color.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                })
                 
                 .alert("Неверный ввод", isPresented: $showAlertNonMinus) {
                     Button("Ок", role: .cancel) { }

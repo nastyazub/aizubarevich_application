@@ -36,7 +36,7 @@ struct AddWeightView: View {
                 }
                 
                 
-                Button("Готово") {
+                Button(action: {
                     if textFieldText.count > 0 {
                         textFieldText = textFieldText.replacingOccurrences(of: ",", with: ".")
                         if let weight = Double(textFieldText) {
@@ -62,13 +62,15 @@ struct AddWeightView: View {
                         }
                     }
                     
-                }
-                .font(.title2)
-                .foregroundStyle(Color.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                }, label: {
+                    Text("Готово")
+                        .font(.title2)
+                        .foregroundStyle(Color.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                })
                 
                 .alert("Неверный ввод", isPresented: $showAlertNonMinus) {
                     Button("Ок", role: .cancel) { }
