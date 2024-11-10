@@ -17,7 +17,8 @@ struct AddReactionToBaseView: View {
     
     @State var textFieldText: String = ""
     
-    @State var showAlert: Bool = false
+    @State var showAlertEmpty: Bool = false
+    @State var showAlertSameName: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -31,10 +32,21 @@ struct AddReactionToBaseView: View {
                 
                 Button(action: {
                     if textFieldText.count > 1 {
-                        reaction_vm.addReaction(name: textFieldText)
-                        dismiss()
+                        var flag = true
+                        for reaction in reaction_vm.reactions {
+                            if reaction.name == textFieldText {
+                                flag = false
+                            }
+                        }
+                        if flag {
+                            reaction_vm.addReaction(name: textFieldText)
+                            dismiss()
+                        } else {
+                            showAlertSameName = true
+                        }
+                        
                     } else {
-                        showAlert = true
+                        showAlertEmpty = true
                     }
                 }, label: {
                     Text("Готово")
@@ -45,10 +57,16 @@ struct AddReactionToBaseView: View {
                         .background(Color.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 })
-                .alert("Неправильный ввод", isPresented: $showAlert) {
+                .alert("Неправильный ввод", isPresented: $showAlertEmpty) {
                     Button("Ок", role: .cancel) { }
                 } message: {
                     Text("Нельзя оставить поле пустым. Введите название реакции")
+                }
+                
+                .alert("Неверный ввод", isPresented: $showAlertSameName) {
+                    Button("Ок", role: .cancel) { }
+                } message: {
+                    Text("Реакция с таким названием уже существует.")
                 }
                 
                 Spacer()

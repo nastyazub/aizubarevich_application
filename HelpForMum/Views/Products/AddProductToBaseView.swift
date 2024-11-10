@@ -17,7 +17,8 @@ struct AddProductToBaseView: View {
     
     @State var textFieldText: String = ""
     
-    @State var showAlert: Bool = false
+    @State var showAlertEmpty: Bool = false
+    @State var showAlertSameName: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -30,11 +31,21 @@ struct AddProductToBaseView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 Button(action: {
-                    if textFieldText.count > 1 {
-                        _ = products_vm.addProduct(name: textFieldText)[0]
-                        dismiss()
+                    if textFieldText.count > 0 {
+                        var flag = true
+                        for product in products_vm.products {
+                            if product.name == textFieldText {
+                                flag = false
+                            }
+                        }
+                        if flag {
+                            _ = products_vm.addProduct(name: textFieldText)[0]
+                            dismiss()
+                        } else {
+                            showAlertSameName = true
+                        }
                     } else {
-                        showAlert = true
+                        showAlertEmpty = true
                     }
                 }, label: {
                     Text("Готово")
@@ -45,10 +56,16 @@ struct AddProductToBaseView: View {
                         .background(Color.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 })
-                .alert("Неправильный ввод", isPresented: $showAlert) {
+                .alert("Неправильный ввод", isPresented: $showAlertEmpty) {
                     Button("Ок", role: .cancel) { }
                 } message: {
                     Text("Нельзя оставить поле пустым. Введите название продукта")
+                }
+                
+                .alert("Неправильный ввод", isPresented: $showAlertSameName) {
+                    Button("Ок", role: .cancel) { }
+                } message: {
+                    Text("Продукт с таким названием уже существует.")
                 }
                 
                 Spacer()

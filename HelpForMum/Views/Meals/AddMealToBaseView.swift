@@ -20,6 +20,9 @@ struct AddMealToBaseView: View {
     
     @State var next: Bool = false // ИНдикатор перехода на следующий шаг
     
+    @State var showAlertEmpty: Bool = false
+    @State var showAlertSameName: Bool = false
+    
     // MARK: ТЕЛО
     
     var body: some View {
@@ -35,8 +38,24 @@ struct AddMealToBaseView: View {
                     
                     
                     Button(action: {
-                        meal_vm.addMeal(name: textFieldText)
-                        next = true
+                        if !textFieldText.isEmpty {
+                            var flag = true
+                            for meal in meal_vm.meals {
+                                if meal.name == textFieldText {
+                                    flag = false
+                                    break
+                                }
+                            }
+                            if flag {
+                                meal_vm.addMeal(name: textFieldText)
+                                next = true
+                            } else {
+                                showAlertSameName = true
+                            }
+                        } else {
+                            showAlertEmpty = true
+                        }
+                        
                     }, label: {
                         Text("Готово")
                             .font(.title2)
@@ -47,6 +66,17 @@ struct AddMealToBaseView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(.horizontal)
                     })
+                    .alert("Неверный ввод", isPresented: $showAlertEmpty) {
+                        Button("Ок", role: .cancel) { }
+                    } message: {
+                        Text("Нельзя оставить поле пустым. Введите название блюда.")
+                    }
+                    
+                    .alert("Неверный ввод", isPresented: $showAlertSameName) {
+                        Button("Ок", role: .cancel) { }
+                    } message: {
+                        Text("Блюдо с таким названием уже существует.")
+                    }
                 }
                 if next {
                     Text(textFieldText)
