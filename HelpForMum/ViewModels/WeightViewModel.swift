@@ -58,7 +58,6 @@ import CoreData
                 weights.append(newWeight)
                 save()
             } else {
-                let prevWeight = weights[0].weight
                 weights[0].weight = weight
                 save()
                 print("Вес изменён на \(String(format: "%.3f", weight)).")

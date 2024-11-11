@@ -22,7 +22,7 @@ struct ListView: View {
                 NavigationLink {
                     ChartView() // Переход к графикам
                 } label: {
-                    Text("Посмотреть графики")
+                    Text("Рост и вес")
                 }
 
             }

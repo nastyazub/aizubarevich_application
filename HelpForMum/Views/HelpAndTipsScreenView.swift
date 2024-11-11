@@ -8,35 +8,49 @@
 import SwiftUI
 
 struct HelpAndTipsScreenView: View {
-    @State var selection: Int = 4
+    @State var selection: Int = 0
     var body: some View {
-        ScrollView {
-            Picker(
-                selection: $selection,
-                label: Text("Picker"),
-                content: {
-                    Text("Главное").tag(0)
-                    Text("Продукты").tag(1)
-                    Text("Реакции").tag(2)
-                    Text("Аналитика").tag(3)
-                    Text("Блюда").tag(4)
-                    Text("Связь").tag(5)
-                    Text("Советы").tag(6)
-                    })
-            .pickerStyle(.menu)
-            
-            switch selection {
-            case 0:
-                MainView()
-            case 1:
-                ProductsView()
-            case 2:
-                ReactionsView()
-            case 4:
-                MealView()
-            default:
-                MainView()
+        
+        NavigationStack {
+            ScrollView {
+                HStack {
+                    Text("Выберите раздел:")
+                    Picker(
+                        selection: $selection,
+                        label: Text("Picker"),
+                        content: {
+                            Text("Главное").tag(0)
+                            Text("Продукты").tag(1)
+                            Text("Реакции").tag(2)
+                            Text("Аналитика").tag(3)
+                            Text("Блюда").tag(4)
+                            Text("Связь").tag(5)
+                            Text("Советы").tag(6)
+                            })
+                    .pickerStyle(.menu)
+                }
+                
+                switch selection {
+                case 0:
+                    MainView()
+                case 1:
+                    ProductsView()
+                case 2:
+                    ReactionsView()
+                case 3:
+                    AnalyticsView()
+                case 4:
+                    MealView()
+                case 5:
+                    mailView()
+                case 6:
+                    TipsView()
+                default:
+                    MainView()
+                }
             }
+            .navigationTitle("Помощь")
+            
         }
     }
     
@@ -182,6 +196,50 @@ struct HelpAndTipsScreenView: View {
         }
     }
     
+    // MARK: АНАЛИТКА
+    
+    struct AnalyticsView: View {
+        var body: some View {
+            VStack {
+                Text("Аналитика: реакции")
+                    .font(.title2)
+                    .bold()
+                Text("")
+                Text("Вся суть этого приложения - в выявлении наиболее вероятного продукта, вызывающего ту или иную реакцию.")
+                Text("")
+                Text("Чтобы посмотреть на аналитику, нажмите на вкладку меню:")
+                Text("")
+                Image(systemName: "menucard")
+                    .font(.title)
+                    .foregroundStyle(.blue)
+                Text("")
+                Text("Далее нужно нажать на 'Реакции'. Появится список всех реакций, добавленных хотя бы в один приём пищи с продуктом. Под названиями реакций будет наиболее вероятный продукт с процентом его вероятности.")
+                Text("")
+                Text("Если нужна более подробная картина про ту или иную реакцию, то нажмите на неё. Вы увидите список продуктов, которые могли вызвать реакцию и их вероятность.")
+                Text("")
+                Text("Аналитика: рост и вес")
+                    .font(.title2)
+                    .bold()
+                Text("")
+                Text("Эта аналитика - просто график роста ребёнка и график веса ребёнка.")
+                Text("")
+                Text("Чтобы посмотреть на аналитику, нажмите на вкладку меню:")
+                Text("")
+                Image(systemName: "menucard")
+                    .font(.title)
+                    .foregroundStyle(.blue)
+                Text("")
+                Text("Далее нужно нажать на 'Рост и вес'. Появятся графики роста и веса.")
+                Text("")
+                Text("Можно выбрать режим показа: только рост, только вес, рост и вес. По умолчанию стоит показ и роста, и веса.")
+                Text("")
+                Text("При нажатии и удерживании какой-либо точки на графике, появляется точное значение роста или веса ребёнка.")
+            }
+            .multilineTextAlignment(.center)
+            .padding(8)
+        }
+    }
+    
     // MARK: БЛЮДА
     
     struct MealView: View {
@@ -220,6 +278,55 @@ struct HelpAndTipsScreenView: View {
                 Text("В приём пищи добавляются продукты из блюда, а не само блюдо.")
             }
             .multilineTextAlignment(.center)
+            .padding(8)
+        }
+    }
+    
+    // MARK: СВЯЗЬ
+    
+    struct mailView: View {
+        var body: some View {
+            VStack {
+                Text("Чтобы связаться с разработчиком, нужно нажать на вкладку:")
+                Text("")
+                Image(systemName: "mail.fill")
+                    .font(.title2)
+                    .foregroundStyle(.blue)
+                Text("")
+                Text("Появиться кнопка написания письма раработчику. При нажатии на неё, вы перейдёте в приложение 'Почта'. Напишите письмо и отправьте его.")
+            }
+            .multilineTextAlignment(.center)
+            .padding(8)
+        }
+    }
+    
+    // MARK: СОВЕТЫ
+    
+    struct TipsView: View {
+        var body: some View {
+            VStack {
+                Text("Здесь есть несколько советов, которые, возможно помогут Вам в уходе за ребёнком. Но всё же лучше следовать советам, которые рекомендованы врачом.")
+                Text("")
+                Text("Совет 1:")
+                    .bold()
+                    .font(.title2)
+                Text("")
+                Text("Лучше всегда иметь аптечку для малыша под рукой. В ней должны быть:")
+                Text("Запасные подгузники и пелёнки, присыпка, влажные салфетки, стерильная вата.")
+                Text("")
+                Text("Совет 2:")
+                    .bold()
+                    .font(.title2)
+                Text("")
+                Text("Cоблюдайте режим, но иногда можно и расслабиться. Режим - это, конечно хорошо, но если малыш захотел поесть или поспать немного пораньше, то отказывать ему в этом не нужно)")
+                Text("")
+                Text("Совет 3:")
+                    .bold()
+                    .font(.title2)
+                Text("")
+                Text("Не забывайте про себя! Вы должны хоть иногда высыпаться и отдыхать. Не бойтесь просить о помощи близких Вам людей.")
+            }
+            .multilineTextAlignment(.leading)
             .padding(8)
         }
     }
