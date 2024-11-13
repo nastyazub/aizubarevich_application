@@ -71,20 +71,20 @@ struct BreakfastLunchPoldnikDinnerHelp: View {
                 
                 Menu {
                     NavigationLink {
-                        AddReactionToFoodIntakeView(foodIntake: foodIntake) // Добавление реакции
-                    } label: {
-                        VStack {
-                            Image(systemName: "plus")
-                            Text("Реакция")
-                        }
-                    }
-                    
-                    NavigationLink {
                         AddProductToFoodIntakeView(foodIntake: foodIntake) // Добавление продукта
                     } label: {
                         VStack {
                             Image(systemName: "plus")
                             Text("Продукт")
+                        }
+                    }
+                    
+                    NavigationLink {
+                        AddReactionToFoodIntakeView(foodIntake: foodIntake) // Добавление реакции
+                    } label: {
+                        VStack {
+                            Image(systemName: "plus")
+                            Text("Реакция")
                         }
                     }
                     

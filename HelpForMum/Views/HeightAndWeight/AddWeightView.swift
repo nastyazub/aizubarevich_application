@@ -43,6 +43,8 @@ struct AddWeightView: View {
                             if weight >= 0 {
                                 weight_vm.addWeight(weight: weight, date: date)
                                 dismiss()
+                            } else {
+                                showAlertNonMinus = true
                             }
                         } else {
                             showAlertNonEmpty = true
