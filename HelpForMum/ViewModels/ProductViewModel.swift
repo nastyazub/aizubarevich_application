@@ -73,14 +73,14 @@ import CoreData
     /// - Parameters:
     ///   - product: Элемент базы данных (продукт), который  нужно добавить.
     ///   - foodIntake: Элемент базы данных (приём пищи), куда нужно добавить продукт.
-    func addProductToFoodIntake(product: ProductEntity, foodIntake: FoodIntakeEntity) { // ДОДЕЛАТЬ!!!!
+    func addProductToFoodIntake(product: ProductEntity, foodIntake: FoodIntakeEntity) {
         let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
         let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %@", foodIntake, product.id!)
         request.predicate = filter
         
         do {
-            products = try manager.context.fetch(request)
-            if products.isEmpty {
+            let productsForFoodIntake = try manager.context.fetch(request)
+            if productsForFoodIntake.isEmpty {
                 foodIntake.addToProducts(product)
                 save()
             }
@@ -95,12 +95,12 @@ import CoreData
     ///   - meal: Элемент базы данных (блюдо), куда нужно добавить продукт.
     func addProductToMeal(product: ProductEntity, meal: MealEntity) {
         let request = NSFetchRequest<ProductEntity>(entityName: "ProductEntity")
-        let filter = NSPredicate(format: "meals CONTAINS %@ AND id == %d", meal, product.id!)
+        let filter = NSPredicate(format: "meals CONTAINS %@ AND id == %@", meal, product.id!)
         request.predicate = filter
         
         do {
-            products = try manager.context.fetch(request)
-            if products.isEmpty {
+            let productsForMeal = try manager.context.fetch(request)
+            if productsForMeal.isEmpty {
                 meal.addToProducts(product)
                 save()
             }

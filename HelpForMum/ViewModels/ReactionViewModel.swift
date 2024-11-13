@@ -70,12 +70,12 @@ import CoreData
     ///   - foodIntake: Элемент базы данных (приём пищи), куда нужно добавить реакцию.
     func addReactionToFoodIntake(reaction: ReactionEntity, foodIntake: FoodIntakeEntity) {
         let request = NSFetchRequest<ReactionEntity>(entityName: "ReactionEntity")
-        let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %d", foodIntake, reaction.id!)
+        let filter = NSPredicate(format: "foodIntakes CONTAINS %@ AND id == %@", foodIntake, reaction.id!)
         request.predicate = filter
         
         do {
-            reactions = try manager.context.fetch(request)
-            if reactions.isEmpty {
+            let reactionsForFoodIntake = try manager.context.fetch(request)
+            if reactionsForFoodIntake.isEmpty {
                 foodIntake.addToReactions(reaction)
                 save()
             }
