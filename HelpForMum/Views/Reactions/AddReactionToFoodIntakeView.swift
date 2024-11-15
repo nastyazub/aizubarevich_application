@@ -63,11 +63,14 @@ struct AddReactionToFoodIntakeView: View {
                 .alert("Нельзя", isPresented: $showAlert) {
                     Button("Ок", role: .cancel) { }
                 } message: {
-                    Text("Сначала нужно добавить реакции.")
+                    Text("Сначала нужно добавить продукты.")
                 }
             }
             AddReactionButton()
                 .navigationTitle(foodIntake.type_of_time?.name ?? "")
+        }
+        .onAppear {
+            textFieldText = ""
         }
     }
     

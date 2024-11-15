@@ -65,6 +65,9 @@ struct AddProductToFoodIntakeView: View {
             AddProductButton()
                 .navigationTitle(foodIntake.type_of_time?.name ?? "")
         }
+        .onAppear {
+            textFieldText = ""
+        }
     }
 }
 
