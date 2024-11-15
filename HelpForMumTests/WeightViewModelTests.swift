@@ -20,7 +20,7 @@ final class WeightViewModelTests: XCTestCase {
         vm = nil
     }
 
-    func test_HeightViewModel_addHeight() throws {
+    func test_WeightViewModel_addWeight() throws {
         
         //Given
         guard let weight_vm = vm else {
